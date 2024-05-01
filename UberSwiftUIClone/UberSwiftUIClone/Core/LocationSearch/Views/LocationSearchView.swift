@@ -13,7 +13,7 @@ struct LocationSearchView: View {
     @State private var destinationLocationText = ""
 
     var body: some View {
-        VStack {
+        VStack(spacing: 1) {
             HStack {
                 VStack {
                     Circle()
@@ -43,7 +43,7 @@ struct LocationSearchView: View {
             .padding(.top, 64)
 
             Divider()
-                .padding(.vertical)
+                .padding(.top, 18)
 
             ScrollView {
                 VStack(alignment: .leading) {
@@ -53,6 +53,7 @@ struct LocationSearchView: View {
                 }
             }
         }
+        .background(.white)
     }
 }
 
