@@ -7,17 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8ADF1AB62BE2652500F0C67F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADF1AB52BE2652500F0C67F /* HomeView.swift */; };
 		8AE46AB52BDCF8C1004A2F0F /* UberSwiftUICloneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE46AB42BDCF8C1004A2F0F /* UberSwiftUICloneApp.swift */; };
-		8AE46AB72BDCF8C1004A2F0F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE46AB62BDCF8C1004A2F0F /* ContentView.swift */; };
 		8AE46AB92BDCF8C3004A2F0F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8AE46AB82BDCF8C3004A2F0F /* Assets.xcassets */; };
 		8AE46ABC2BDCF8C3004A2F0F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8AE46ABB2BDCF8C3004A2F0F /* Preview Assets.xcassets */; };
 		8AE46AC32BDCF9B5004A2F0F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8AE46AC22BDCF9B5004A2F0F /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8ADF1AB52BE2652500F0C67F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		8AE46AB12BDCF8C1004A2F0F /* UberSwiftUIClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UberSwiftUIClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AE46AB42BDCF8C1004A2F0F /* UberSwiftUICloneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UberSwiftUICloneApp.swift; sourceTree = "<group>"; };
-		8AE46AB62BDCF8C1004A2F0F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8AE46AB82BDCF8C3004A2F0F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8AE46ABB2BDCF8C3004A2F0F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8AE46AC22BDCF9B5004A2F0F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -34,6 +34,59 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8ADF1AAD2BE2649C00F0C67F /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		8ADF1AAE2BE264B000F0C67F /* App */ = {
+			isa = PBXGroup;
+			children = (
+				8AE46AB42BDCF8C1004A2F0F /* UberSwiftUICloneApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		8ADF1AAF2BE264C400F0C67F /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				8ADF1AB32BE2650C00F0C67F /* Views */,
+				8ADF1AB22BE2650500F0C67F /* ViewModels */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		8ADF1AB02BE264CB00F0C67F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8ADF1AB12BE264E000F0C67F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8ADF1AB22BE2650500F0C67F /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		8ADF1AB32BE2650C00F0C67F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8ADF1AB52BE2652500F0C67F /* HomeView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		8AE46AA82BDCF8C1004A2F0F = {
 			isa = PBXGroup;
 			children = (
@@ -53,10 +106,13 @@
 		8AE46AB32BDCF8C1004A2F0F /* UberSwiftUIClone */ = {
 			isa = PBXGroup;
 			children = (
-				8AE46AB42BDCF8C1004A2F0F /* UberSwiftUICloneApp.swift */,
-				8AE46AB62BDCF8C1004A2F0F /* ContentView.swift */,
-				8AE46AC22BDCF9B5004A2F0F /* GoogleService-Info.plist */,
+				8ADF1AAE2BE264B000F0C67F /* App */,
 				8AE46AB82BDCF8C3004A2F0F /* Assets.xcassets */,
+				8ADF1AAF2BE264C400F0C67F /* Core */,
+				8ADF1AB02BE264CB00F0C67F /* Extensions */,
+				8AE46AC22BDCF9B5004A2F0F /* GoogleService-Info.plist */,
+				8ADF1AAD2BE2649C00F0C67F /* Managers */,
+				8ADF1AB12BE264E000F0C67F /* Models */,
 				8AE46ABA2BDCF8C3004A2F0F /* Preview Content */,
 			);
 			path = UberSwiftUIClone;
@@ -143,8 +199,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8AE46AB72BDCF8C1004A2F0F /* ContentView.swift in Sources */,
 				8AE46AB52BDCF8C1004A2F0F /* UberSwiftUICloneApp.swift in Sources */,
+				8ADF1AB62BE2652500F0C67F /* HomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
