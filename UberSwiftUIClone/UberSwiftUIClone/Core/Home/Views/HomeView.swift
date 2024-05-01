@@ -16,6 +16,10 @@ struct HomeView: View {
             LocationSearchActivationView()
                 .padding(.top, 72)
                 .padding(.horizontal)
+
+            MapViewActionButton()
+                .padding(.leading)
+                .padding(.top, 4)
         }
     }
 }
