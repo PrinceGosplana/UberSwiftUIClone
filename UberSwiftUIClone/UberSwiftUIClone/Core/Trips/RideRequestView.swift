@@ -79,7 +79,7 @@ struct RideRequestView: View {
                 HStack(spacing: 12) {
                     ForEach(0 ..< 3, id: \.self) { _ in
                         VStack(alignment: .leading) {
-                            Image(systemName: "car")
+                            Image(.uberX)
                                 .resizable()
                                 .scaledToFit()
 
