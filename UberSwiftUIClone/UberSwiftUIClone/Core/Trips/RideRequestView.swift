@@ -54,7 +54,7 @@ struct RideRequestView: View {
                         if let location = locationViewModel.selectedUberLocation {
                             Text(location.title)
                                 .font(.subheadline)
-                                .foregroundStyle(.black)
+                                .foregroundStyle(Color.theme.primaryTextColor)
                                 .fontWeight(.semibold)
                         }
 
@@ -100,9 +100,9 @@ struct RideRequestView: View {
                             .padding(8)
                         }
                         .frame(width: 112, height: 140)
-                        .background(Color(type == selectedRideType ? .systemBlue : .systemGroupedBackground))
+                        .background(Color(type == selectedRideType ? .blue : Color.theme.secondaryBackgroundColor))
                         .scaleEffect(type == selectedRideType ? 1.1 : 1.0)
-                        .foregroundStyle(type == selectedRideType ? .white : .black)
+                        .foregroundStyle(type == selectedRideType ? .white : Color.theme.primaryTextColor)
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                         .onTapGesture {
                             withAnimation(.spring()) {
@@ -139,7 +139,7 @@ struct RideRequestView: View {
                     .padding()
             }
             .frame(height: 50)
-            .background(Color(.systemGroupedBackground))
+            .background(Color.theme.secondaryBackgroundColor)
             .clipShape(RoundedRectangle(cornerRadius: 10))
             .padding(.horizontal)
 
@@ -158,7 +158,7 @@ struct RideRequestView: View {
             }
         }
         .padding(.bottom, 32)
-        .background(.white)
+        .background(Color.theme.backgroundColor)
         .clipShape(RoundedRectangle(cornerRadius: 16))
     }
 }
