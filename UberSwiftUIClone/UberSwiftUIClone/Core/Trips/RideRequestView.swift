@@ -101,6 +101,11 @@ struct RideRequestView: View {
             }
             .padding(.horizontal)
 
+            Divider()
+                .padding(.vertical, 8)
+
+            // payment option view
+
             HStack(spacing: 12) {
                 Text("Visa")
                     .font(.subheadline)
@@ -124,7 +129,22 @@ struct RideRequestView: View {
             .background(Color(.systemGroupedBackground))
             .clipShape(RoundedRectangle(cornerRadius: 10))
             .padding(.horizontal)
+
+            // request ride button
+
+            Button {
+
+            } label: {
+                Text("CONFIRM")
+                    .fontWeight(.bold)
+                    .frame(maxWidth: .infinity, maxHeight: 50)
+                    .background(.blue)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .foregroundStyle(.white)
+                    .padding([.leading, .trailing], 16)
+            }
         }
+        .background(.white)
     }
 }
 
