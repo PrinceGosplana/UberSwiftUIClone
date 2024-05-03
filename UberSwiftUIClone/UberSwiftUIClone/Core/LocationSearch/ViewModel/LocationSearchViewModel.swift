@@ -13,7 +13,9 @@ final class LocationSearchViewModel: NSObject, ObservableObject {
 
     @Published var results = [MKLocalSearchCompletion]()
     @Published var selectedUberLocation: UberLocation?
-
+    @Published var pickupTime: String?
+    @Published var dropOffTime: String?
+    
     private let searchCompleter = MKLocalSearchCompleter()
     var queryFragment: String = "" {
         didSet {
@@ -67,6 +69,38 @@ final class LocationSearchViewModel: NSObject, ObservableObject {
 
         let tripDistanceInMeters = userCoordinate.distance(from: destination)
         return type.computePrice(for: tripDistanceInMeters)
+    }
+
+    func getDestinationRoute(
+        from userLocation: CLLocationCoordinate2D,
+        to destination: CLLocationCoordinate2D,
+        completion: @escaping(MKRoute) -> Void
+    ) {
+        let userPlacemark = MKPlacemark(coordinate: userLocation)
+        let destinationPlacemark = MKPlacemark(coordinate: destination)
+        let request = MKDirections.Request()
+        request.source = MKMapItem(placemark: userPlacemark)
+        request.destination = MKMapItem(placemark: destinationPlacemark)
+
+        let directions = MKDirections(request: request)
+        directions.calculate { response, error in
+            if let error {
+                print(error.localizedDescription)
+                return
+            }
+
+            guard let route = response?.routes.first else { return }
+            self.configurePickupAndDropoffTimes(with: route.expectedTravelTime)
+            completion(route)
+        }
+    }
+
+    func configurePickupAndDropoffTimes(with expectedTravelTime: Double) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "hh:mm a"
+
+        pickupTime = formatter.string(from: Date())
+        dropOffTime = formatter.string(from: Date() + expectedTravelTime)
     }
 }
 

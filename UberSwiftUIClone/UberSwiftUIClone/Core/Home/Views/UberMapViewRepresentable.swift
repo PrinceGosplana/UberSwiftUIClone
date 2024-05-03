@@ -35,6 +35,7 @@ struct UberMapViewRepresentable: UIViewRepresentable {
                 context.coordinator.addAndSelectAnnotation(withCoordinate: coordinate)
                 context.coordinator.configurePolyline(withDestinationCoordinate: coordinate)
             }
+        case .polylineAdded: break
         }
     }
 
@@ -99,8 +100,12 @@ extension UberMapViewRepresentable {
 
         func configurePolyline(withDestinationCoordinate coordinate: CLLocationCoordinate2D) {
             guard let userLocationCoordinate else { return }
-            getDestinationRoute(from: userLocationCoordinate, to: coordinate) { route in
+            parent.locationViewModel.getDestinationRoute(
+                from: userLocationCoordinate,
+                to: coordinate
+            ) { route in
                 self.parent.mapView.addOverlay(route.polyline)
+                self.parent.mapState = .polylineAdded
                 let rect = self.parent.mapView.mapRectThatFits(
                     route.polyline.boundingMapRect,
                     edgePadding: .init(
@@ -111,29 +116,6 @@ extension UberMapViewRepresentable {
                     )
                 )
                 self.parent.mapView.setRegion(MKCoordinateRegion(rect), animated: true)
-            }
-        }
-
-        func getDestinationRoute(
-            from userLocation: CLLocationCoordinate2D,
-            to destination: CLLocationCoordinate2D,
-            completion: @escaping(MKRoute) -> Void
-        ) {
-            let userPlacemark = MKPlacemark(coordinate: userLocation)
-            let destinationPlacemark = MKPlacemark(coordinate: destination)
-            let request = MKDirections.Request()
-            request.source = MKMapItem(placemark: userPlacemark)
-            request.destination = MKMapItem(placemark: destinationPlacemark)
-
-            let directions = MKDirections(request: request)
-            directions.calculate { response, error in
-                if let error {
-                    print(error.localizedDescription)
-                    return
-                }
-
-                guard let route = response?.routes.first else { return }
-                completion(route)
             }
         }
 
