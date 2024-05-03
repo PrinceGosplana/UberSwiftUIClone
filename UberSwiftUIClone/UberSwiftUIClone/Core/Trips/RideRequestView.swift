@@ -99,6 +99,31 @@ struct RideRequestView: View {
                     }
                 }
             }
+            .padding(.horizontal)
+
+            HStack(spacing: 12) {
+                Text("Visa")
+                    .font(.subheadline)
+                    .fontWeight(.semibold)
+                    .padding(6)
+                    .background(.blue)
+                    .clipShape(RoundedRectangle(cornerRadius: 4))
+                    .foregroundStyle(.white)
+                    .padding(.leading)
+
+                Text("*** 1234")
+                    .fontWeight(.bold)
+
+                Spacer()
+
+                Image(systemName: "chevron.right")
+                    .imageScale(.medium)
+                    .padding()
+            }
+            .frame(height: 50)
+            .background(Color(.systemGroupedBackground))
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+            .padding(.horizontal)
         }
     }
 }
