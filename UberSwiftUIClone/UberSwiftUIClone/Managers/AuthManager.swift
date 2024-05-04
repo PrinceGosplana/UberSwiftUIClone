@@ -46,10 +46,24 @@ final class AuthManager: ObservableObject {
         }
     }
 
-    func signOut() async { 
+    func signOut() async {
         await service.signOut()
         await MainActor.run {
             userSession = nil
         }
     }
+
+    func fetchUser() async {
+        if await userSession != nil  { return }
+        do {
+            let user = try await service.fetchUser()
+            await MainActor.run {
+                userSession = user
+                print("hello \(user.fullName)")
+            }
+        } catch {
+            print("Fetch user error - \(error.localizedDescription)")
+        }
+    }
+
 }
