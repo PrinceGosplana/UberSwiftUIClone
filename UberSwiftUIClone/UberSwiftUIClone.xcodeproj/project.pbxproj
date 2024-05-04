@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8AD9D32C2BE6252300D0CEE6 /* CustomInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD9D32B2BE6252300D0CEE6 /* CustomInputField.swift */; };
 		8ADF1AB62BE2652500F0C67F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADF1AB52BE2652500F0C67F /* HomeView.swift */; };
 		8ADF1AB82BE265F100F0C67F /* UberMapViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADF1AB72BE265F100F0C67F /* UberMapViewRepresentable.swift */; };
 		8ADF1ABC2BE267B000F0C67F /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADF1ABB2BE267B000F0C67F /* LocationManager.swift */; };
@@ -30,6 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8AD9D32B2BE6252300D0CEE6 /* CustomInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputField.swift; sourceTree = "<group>"; };
 		8ADF1AB52BE2652500F0C67F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		8ADF1AB72BE265F100F0C67F /* UberMapViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UberMapViewRepresentable.swift; sourceTree = "<group>"; };
 		8ADF1ABB2BE267B000F0C67F /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
@@ -64,6 +66,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8AD9D32A2BE624F600D0CEE6 /* Reusable Items */ = {
+			isa = PBXGroup;
+			children = (
+				8AD9D32B2BE6252300D0CEE6 /* CustomInputField.swift */,
+			);
+			path = "Reusable Items";
+			sourceTree = "<group>";
+		};
 		8ADF1AAD2BE2649C00F0C67F /* Managers */ = {
 			isa = PBXGroup;
 			children = (
@@ -215,6 +225,7 @@
 		8AE46AB32BDCF8C1004A2F0F /* UberSwiftUIClone */ = {
 			isa = PBXGroup;
 			children = (
+				8AD9D32A2BE624F600D0CEE6 /* Reusable Items */,
 				8ADF1AAE2BE264B000F0C67F /* App */,
 				8AE46AB82BDCF8C3004A2F0F /* Assets.xcassets */,
 				8ADF1AAF2BE264C400F0C67F /* Core */,
@@ -324,6 +335,7 @@
 				8ADF1AB62BE2652500F0C67F /* HomeView.swift in Sources */,
 				8ADF1AC82BE28B3300F0C67F /* LocationSearchResultCell.swift in Sources */,
 				8ADF1ADD2BE539B600F0C67F /* LoginView.swift in Sources */,
+				8AD9D32C2BE6252300D0CEE6 /* CustomInputField.swift in Sources */,
 				8ADF1AD12BE4E6B200F0C67F /* RideType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
