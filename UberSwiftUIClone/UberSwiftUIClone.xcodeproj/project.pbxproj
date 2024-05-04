@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8AD9D32C2BE6252300D0CEE6 /* CustomInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD9D32B2BE6252300D0CEE6 /* CustomInputField.swift */; };
+		8AD9D32E2BE638FA00D0CEE6 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD9D32D2BE638F900D0CEE6 /* AuthViewModel.swift */; };
 		8ADF1AB62BE2652500F0C67F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADF1AB52BE2652500F0C67F /* HomeView.swift */; };
 		8ADF1AB82BE265F100F0C67F /* UberMapViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADF1AB72BE265F100F0C67F /* UberMapViewRepresentable.swift */; };
 		8ADF1ABC2BE267B000F0C67F /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADF1ABB2BE267B000F0C67F /* LocationManager.swift */; };
@@ -32,6 +33,7 @@
 
 /* Begin PBXFileReference section */
 		8AD9D32B2BE6252300D0CEE6 /* CustomInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputField.swift; sourceTree = "<group>"; };
+		8AD9D32D2BE638F900D0CEE6 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		8ADF1AB52BE2652500F0C67F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		8ADF1AB72BE265F100F0C67F /* UberMapViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UberMapViewRepresentable.swift; sourceTree = "<group>"; };
 		8ADF1ABB2BE267B000F0C67F /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 		8ADF1ADB2BE5399F00F0C67F /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				8AD9D32D2BE638F900D0CEE6 /* AuthViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -325,6 +328,7 @@
 				8ADF1ACF2BE409A800F0C67F /* RideRequestView.swift in Sources */,
 				8ADF1AD42BE5143400F0C67F /* Double.swift in Sources */,
 				8ADF1ADF2BE539C200F0C67F /* RegistrationView.swift in Sources */,
+				8AD9D32E2BE638FA00D0CEE6 /* AuthViewModel.swift in Sources */,
 				8ADF1ACC2BE3D62D00F0C67F /* MapViewState.swift in Sources */,
 				8ADF1AC42BE276A500F0C67F /* MapViewActionButton.swift in Sources */,
 				8AE46AB52BDCF8C1004A2F0F /* UberSwiftUICloneApp.swift in Sources */,

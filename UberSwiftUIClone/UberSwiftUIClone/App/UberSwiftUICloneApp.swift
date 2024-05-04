@@ -11,11 +11,13 @@ import SwiftUI
 struct UberSwiftUICloneApp: App {
 
     @StateObject var locationViewModel = LocationSearchViewModel()
+    @StateObject var authViewModel = AuthViewModel()
 
     var body: some Scene {
         WindowGroup {
             HomeView()
                 .environmentObject(locationViewModel)
+                .environmentObject(authViewModel)
         }
     }
 }
