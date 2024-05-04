@@ -11,7 +11,7 @@ import SwiftUI
 struct UberSwiftUICloneApp: App {
 
     @StateObject var locationViewModel = LocationSearchViewModel()
-    @StateObject var authViewModel = AuthViewModel()
+    @StateObject var authViewModel = AuthManager()
 
     var body: some Scene {
         WindowGroup {

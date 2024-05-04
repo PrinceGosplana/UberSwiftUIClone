@@ -11,7 +11,7 @@ struct HomeView: View {
 
     @State private var mapState = MapViewState.noInput
     @EnvironmentObject var locationViewModel: LocationSearchViewModel
-    @EnvironmentObject var authViewModel: AuthViewModel
+    @EnvironmentObject var authViewModel: AuthManager
 
     var body: some View {
         Group {
@@ -60,5 +60,5 @@ struct HomeView: View {
 #Preview {
     HomeView()
         .environmentObject(LocationSearchViewModel())
-        .environmentObject(AuthViewModel())
+        .environmentObject(AuthManager())
 }
