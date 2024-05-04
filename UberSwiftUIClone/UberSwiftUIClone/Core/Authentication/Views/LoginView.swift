@@ -104,8 +104,8 @@ struct LoginView: View {
                         Image(systemName: "arrow.right")
                             .foregroundStyle(.black)
                     }
+                    .frame(maxWidth: .infinity - 32, maxHeight: 50, alignment: .center)
                 }
-                .frame(maxWidth: .infinity - 32, maxHeight: 50, alignment: .center)
                 .background(.white)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 
