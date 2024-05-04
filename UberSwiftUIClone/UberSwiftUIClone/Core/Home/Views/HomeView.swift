@@ -60,5 +60,5 @@ struct HomeView: View {
 #Preview {
     HomeView()
         .environmentObject(LocationSearchViewModel())
-        .environmentObject(AuthManager())
+        .environmentObject(AuthManager(service: MockAuthService()))
 }

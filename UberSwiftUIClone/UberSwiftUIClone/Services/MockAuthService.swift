@@ -8,7 +8,7 @@
 import Foundation
 
 actor MockAuthService: AuthServiceProtocol {
-    func registerUser(withEmail email: String, password: String) async throws -> String {
+    func registerUser(withEmail email: String, password: String, fullName: String) async throws -> String {
         UUID().uuidString
     }
 

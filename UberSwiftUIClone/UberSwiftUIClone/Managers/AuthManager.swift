@@ -10,15 +10,18 @@ import Foundation
 final class AuthManager: ObservableObject {
 
     private let service: AuthServiceProtocol
-    @Published var userSession: String?
+    @MainActor @Published var userSession: String?
 
     init(service: AuthServiceProtocol) {
         self.service = service
     }
 
-    func registerUser(withEmail email: String, password: String) async {
+    func registerUser(withEmail email: String, password: String, fullName: String) async {
         do {
-            userSession = try await service.registerUser(withEmail: email, password: password)
+            let result = try await service.registerUser(withEmail: email, password: password, fullName: fullName)
+            await MainActor.run {
+                userSession = result
+            }
         } catch {
             print("Register error \(error.localizedDescription)")
         }
@@ -26,7 +29,10 @@ final class AuthManager: ObservableObject {
 
     func login(withEmail email: String, password: String) async {
         do {
-            userSession = try await service.login(withEmail: email, password: password)
+            let result = try await service.login(withEmail: email, password: password)
+            await MainActor.run {
+                userSession = result
+            }
         } catch {
             print("Login error \(error.localizedDescription)")
         }
@@ -34,6 +40,8 @@ final class AuthManager: ObservableObject {
 
     func signOut() async { 
         await service.signOut()
-        userSession = nil
+        await MainActor.run {
+            userSession = nil
+        }
     }
 }

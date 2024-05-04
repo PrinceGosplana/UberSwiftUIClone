@@ -13,6 +13,7 @@ struct RegistrationView: View {
     @State private var email = ""
     @State private var password = ""
     @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject var authManager: AuthManager
 
     var body: some View {
         ZStack {
@@ -41,15 +42,15 @@ struct RegistrationView: View {
 
                     VStack(spacing: 56) {
                         CustomInputField(title: "Full Name", placeholder: "Full name", text: $fullName)
-                        CustomInputField(title: "Email", placeholder: "Email", text: $email)
-                        CustomInputField(title: "Password", placeholder: "Password", text: $password)
+                        CustomInputField(title: "Email address", placeholder: "@name@example.com", text: $email)
+                        CustomInputField(title: "Create password", placeholder: "Enter your password",isSecureField: true, text: $password)
                     }
                     .padding(.leading)
 
                     Spacer()
 
                     Button {
-
+                        Task { await authManager.registerUser(withEmail: email, password: password, fullName: fullName) }
                     } label: {
                         HStack {
                             Text("SIGN IN")
@@ -73,4 +74,5 @@ struct RegistrationView: View {
 
 #Preview {
     RegistrationView()
+        .environmentObject(AuthManager(service: MockAuthService()))
 }
