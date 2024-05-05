@@ -48,7 +48,7 @@ extension HomeView {
                     .ignoresSafeArea()
 
                 if mapState == .searchingForLocation {
-                    LocationSearchView(mapState: $mapState)
+                    LocationSearchView()
                 } else if mapState == .noInput || mapState == .showSideMenu{
                     LocationSearchActivationView()
                         .padding(.top, 72)
@@ -74,11 +74,16 @@ extension HomeView {
             }
         }
         .ignoresSafeArea(edges: [.bottom])
-        .onReceive(LocationManager.shared.$userLocation, perform: { location in
+        .onReceive(LocationManager.shared.$userLocation) { location in
             if let location {
                 locationViewModel.userLocation = location
             }
-        })
+        }
+        .onReceive(locationViewModel.$selectedUberLocation) { location in
+            if location != nil {
+                mapState = .locationSelected
+            }
+        }
     }
 }
 
