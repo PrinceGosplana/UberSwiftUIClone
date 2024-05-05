@@ -10,7 +10,7 @@ import Foundation
 final class AuthManager: ObservableObject {
 
     private let service: AuthServiceProtocol
-    @MainActor @Published var userSession: User?
+    @MainActor @Published var currentUser: User?
 
     init(service: AuthServiceProtocol) {
         self.service = service
@@ -20,7 +20,7 @@ final class AuthManager: ObservableObject {
         do {
             let uid = try await service.registerUser(withEmail: email, password: password, fullName: fullName)
             await MainActor.run {
-                userSession = User(
+                currentUser = User(
                     fullName: fullName.isEmpty ? User.mockUser.fullName : fullName,
                     email: email.isEmpty ? User.mockUser.email : email,
                     uid: uid
@@ -35,7 +35,7 @@ final class AuthManager: ObservableObject {
         do {
             let uid = try await service.login(withEmail: email, password: password)
             await MainActor.run {
-                userSession = User(
+                currentUser = User(
                     fullName: User.mockUser.fullName,
                     email: email.isEmpty ? User.mockUser.email : email,
                     uid: uid
@@ -49,16 +49,16 @@ final class AuthManager: ObservableObject {
     func signOut() async {
         await service.signOut()
         await MainActor.run {
-            userSession = nil
+            currentUser = nil
         }
     }
 
     func fetchUser() async {
-        if await userSession != nil  { return }
+        if await currentUser != nil  { return }
         do {
             let user = try await service.fetchUser()
             await MainActor.run {
-                userSession = user
+                currentUser = user
                 print("hello \(user.fullName)")
             }
         } catch {

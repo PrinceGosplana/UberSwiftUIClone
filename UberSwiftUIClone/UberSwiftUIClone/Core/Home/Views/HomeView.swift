@@ -16,13 +16,13 @@ struct HomeView: View {
 
     var body: some View {
         Group {
-            if authViewModel.userSession == nil {
+            if authViewModel.currentUser == nil {
                 LoginView()
-            } else {
+            } else if let user = authViewModel.currentUser {
                 NavigationStack {
                     ZStack {
                         if showSideMenu {
-                            SideMenuView()
+                            SideMenuView(user: user)
                         }
                         mapView
                             .offset(x: showSideMenu ? 316 : 0)
