@@ -10,6 +10,7 @@ import SwiftUI
 struct MapViewActionButton: View {
 
     @Binding var mapState: MapViewState
+    @Binding var showSideMenu: Bool
     @EnvironmentObject var viewModel: LocationSearchViewModel
     @EnvironmentObject var authManager: AuthManager
 
@@ -36,19 +37,20 @@ struct MapViewActionButton: View {
     func actionForState(_ state: MapViewState) {
         switch state {
         case .noInput:
-//            Task { await authManager.signOut() }
             break
         case .searchingForLocation:
-            mapState = .noInput
+            mapState = .showSideMenu
         case .locationSelected, .polylineAdded:
-            mapState = .noInput
+            mapState = .showSideMenu
             viewModel.selectedUberLocation = nil
+        case .showSideMenu:
+            showSideMenu.toggle()
         }
     }
 
     func imageNameForState(_ state: MapViewState) -> String {
         switch state {
-        case .noInput:
+        case .noInput, .showSideMenu:
             return "line.3.horizontal"
         case .searchingForLocation, .locationSelected, .polylineAdded:
             return "arrow.left"
@@ -57,7 +59,7 @@ struct MapViewActionButton: View {
 }
 
 #Preview {
-    MapViewActionButton(mapState: .constant(.noInput))
+    MapViewActionButton(mapState: .constant(.noInput), showSideMenu: .constant(false))
         .environmentObject(LocationSearchViewModel())
         .environmentObject(AuthManager(service: MockAuthService()))
 }

@@ -28,7 +28,7 @@ struct UberMapViewRepresentable: UIViewRepresentable {
         switch mapState {
         case .noInput:
             context.coordinator.clearMapViewAndRecenterOnUserLocation()
-        case .searchingForLocation:
+        case .showSideMenu, .searchingForLocation:
             break
         case .locationSelected:
             if let coordinate = locationViewModel.selectedUberLocation?.coordinate {
