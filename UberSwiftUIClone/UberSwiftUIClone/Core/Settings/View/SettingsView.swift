@@ -8,6 +8,14 @@
 import SwiftUI
 
 struct SettingsView: View {
+
+    private let user: User
+    @EnvironmentObject var authManager: AuthManager
+
+    init(user: User) {
+        self.user = user
+    }
+
     var body: some View {
         VStack {
             List {
@@ -20,10 +28,10 @@ struct SettingsView: View {
                             .frame(width: 64, height: 64)
 
                         VStack(alignment: .leading, spacing: 8) {
-                            Text("user.fullName")
+                            Text(user.fullName)
                                 .font(.system(size: 16, weight: .semibold))
 
-                            Text("user.email")
+                            Text(user.email)
                                 .font(.system(size: 14))
                                 .tint(Color.theme.primaryTextColor)
                                 .opacity(0.77)
@@ -55,6 +63,9 @@ struct SettingsView: View {
                     SettingsRow(imageName: "dollarsign.circle.fill", title: "Make Money Driving", tintColor: Color(.systemGreen))
 
                     SettingsRow(imageName: "arrow.left.circle.fill", title: "Sign Out", tintColor: Color(.systemRed))
+                        .onTapGesture {
+                            Task { await authManager.signOut() }
+                        }
                 }
                 
             }
@@ -66,6 +77,7 @@ struct SettingsView: View {
 
 #Preview {
     NavigationStack {
-        SettingsView()
+        SettingsView(user: User.mockUser)
+            .environmentObject(AuthManager(service: MockAuthService()))
     }
 }
