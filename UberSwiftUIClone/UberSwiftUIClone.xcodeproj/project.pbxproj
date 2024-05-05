@@ -13,6 +13,9 @@
 		8AD9D3332BE6439600D0CEE6 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD9D3322BE6439600D0CEE6 /* AuthService.swift */; };
 		8AD9D3352BE643A000D0CEE6 /* MockAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD9D3342BE643A000D0CEE6 /* MockAuthService.swift */; };
 		8AD9D3372BE65ECD00D0CEE6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD9D3362BE65ECD00D0CEE6 /* User.swift */; };
+		8AD9D33C2BE69ED600D0CEE6 /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD9D33B2BE69ED600D0CEE6 /* SideMenuView.swift */; };
+		8AD9D33E2BE6ADCA00D0CEE6 /* SideMenuOptionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD9D33D2BE6ADCA00D0CEE6 /* SideMenuOptionViewModel.swift */; };
+		8AD9D3402BE6AE9E00D0CEE6 /* SideMenuOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD9D33F2BE6AE9E00D0CEE6 /* SideMenuOptionView.swift */; };
 		8ADF1AB62BE2652500F0C67F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADF1AB52BE2652500F0C67F /* HomeView.swift */; };
 		8ADF1AB82BE265F100F0C67F /* UberMapViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADF1AB72BE265F100F0C67F /* UberMapViewRepresentable.swift */; };
 		8ADF1ABC2BE267B000F0C67F /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADF1ABB2BE267B000F0C67F /* LocationManager.swift */; };
@@ -42,6 +45,9 @@
 		8AD9D3322BE6439600D0CEE6 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		8AD9D3342BE643A000D0CEE6 /* MockAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAuthService.swift; sourceTree = "<group>"; };
 		8AD9D3362BE65ECD00D0CEE6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		8AD9D33B2BE69ED600D0CEE6 /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
+		8AD9D33D2BE6ADCA00D0CEE6 /* SideMenuOptionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuOptionViewModel.swift; sourceTree = "<group>"; };
+		8AD9D33F2BE6AE9E00D0CEE6 /* SideMenuOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuOptionView.swift; sourceTree = "<group>"; };
 		8ADF1AB52BE2652500F0C67F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		8ADF1AB72BE265F100F0C67F /* UberMapViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UberMapViewRepresentable.swift; sourceTree = "<group>"; };
 		8ADF1ABB2BE267B000F0C67F /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
@@ -94,6 +100,32 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		8AD9D3382BE69EA300D0CEE6 /* SideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				8AD9D3392BE69EAC00D0CEE6 /* ViewModel */,
+				8AD9D33A2BE69EB300D0CEE6 /* Views */,
+			);
+			path = SideMenu;
+			sourceTree = "<group>";
+		};
+		8AD9D3392BE69EAC00D0CEE6 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				8AD9D33D2BE6ADCA00D0CEE6 /* SideMenuOptionViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		8AD9D33A2BE69EB300D0CEE6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8AD9D33B2BE69ED600D0CEE6 /* SideMenuView.swift */,
+				8AD9D33F2BE6AE9E00D0CEE6 /* SideMenuOptionView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		8ADF1AAD2BE2649C00F0C67F /* Managers */ = {
 			isa = PBXGroup;
 			children = (
@@ -117,6 +149,7 @@
 				8ADF1AD92BE5398C00F0C67F /* Authentication */,
 				8ADF1ABD2BE2700500F0C67F /* Home */,
 				8ADF1ABE2BE2701900F0C67F /* LocationSearch */,
+				8AD9D3382BE69EA300D0CEE6 /* SideMenu */,
 				8ADF1ACD2BE4099100F0C67F /* Trips */,
 			);
 			path = Core;
@@ -349,6 +382,7 @@
 				8ADF1AD42BE5143400F0C67F /* Double.swift in Sources */,
 				8ADF1ADF2BE539C200F0C67F /* RegistrationView.swift in Sources */,
 				8AD9D3332BE6439600D0CEE6 /* AuthService.swift in Sources */,
+				8AD9D3402BE6AE9E00D0CEE6 /* SideMenuOptionView.swift in Sources */,
 				8AD9D32E2BE638FA00D0CEE6 /* AuthManager.swift in Sources */,
 				8ADF1ACC2BE3D62D00F0C67F /* MapViewState.swift in Sources */,
 				8ADF1AC42BE276A500F0C67F /* MapViewActionButton.swift in Sources */,
@@ -357,9 +391,11 @@
 				8ADF1AB82BE265F100F0C67F /* UberMapViewRepresentable.swift in Sources */,
 				8ADF1AC22BE2704700F0C67F /* LocationSearchActivationView.swift in Sources */,
 				8AD9D3312BE642B600D0CEE6 /* AuthServiceProtocol.swift in Sources */,
+				8AD9D33E2BE6ADCA00D0CEE6 /* SideMenuOptionViewModel.swift in Sources */,
 				8AD9D3352BE643A000D0CEE6 /* MockAuthService.swift in Sources */,
 				8ADF1AD62BE51C7400F0C67F /* UberLocation.swift in Sources */,
 				8ADF1AB62BE2652500F0C67F /* HomeView.swift in Sources */,
+				8AD9D33C2BE69ED600D0CEE6 /* SideMenuView.swift in Sources */,
 				8ADF1AC82BE28B3300F0C67F /* LocationSearchResultCell.swift in Sources */,
 				8ADF1ADD2BE539B600F0C67F /* LoginView.swift in Sources */,
 				8AD9D32C2BE6252300D0CEE6 /* CustomInputField.swift in Sources */,
