@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SideMenuView: View {
+
     var body: some View {
         VStack(spacing: 40) {
             // header view
@@ -25,7 +26,7 @@ struct SideMenuView: View {
 
                         Text("test@gmail.com")
                             .font(.system(size: 14))
-                            .tint(.black)
+                            .tint(Color.theme.primaryTextColor)
                             .opacity(0.77)
                     }
                 }
@@ -33,7 +34,7 @@ struct SideMenuView: View {
                 VStack(alignment: .leading, spacing: 16) {
                     Text("Do more with your account")
                         .font(.footnote)
-                    .fontWeight(.semibold)
+                        .fontWeight(.semibold)
 
                     HStack {
                         Image(systemName: "dollarsign.square")
@@ -45,7 +46,7 @@ struct SideMenuView: View {
                             .padding(6)
                     }
                 }
-                
+
                 Rectangle()
                     .containerRelativeFrame(.horizontal) { length, height in
                         length - 100
@@ -62,9 +63,14 @@ struct SideMenuView: View {
             // option list
             VStack {
                 ForEach(SideMenuOptionViewModel.allCases) { viewModel in
-                    SideMenuOptionView(viewModel: viewModel)
-                        .padding()
+                    NavigationLink(value: viewModel) {
+                        SideMenuOptionView(viewModel: viewModel)
+                            .padding()
+                    }
                 }
+            }
+            .navigationDestination(for: SideMenuOptionViewModel.self) { viewModel in
+                Text(viewModel.title)
             }
 
             Spacer()
