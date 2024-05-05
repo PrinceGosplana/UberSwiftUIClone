@@ -9,23 +9,21 @@ import SwiftUI
 
 struct SavedLocationRoad: View {
 
-    let imageName: String
-    let title: String
-    let subTitle: String
+    let viewModel: SavedLocationViewModel
 
     var body: some View {
         HStack(spacing: 12) {
-            Image(systemName: imageName)
+            Image(systemName: viewModel.imageName)
                 .imageScale(.medium)
                 .font(.title)
                 .foregroundStyle(Color(.systemBlue))
 
             VStack(alignment: .leading, spacing: 4) {
-                Text(title)
+                Text(viewModel.title)
                     .font(.system(size: 15, weight: .semibold))
                     .foregroundStyle(Color.theme.primaryTextColor)
 
-                Text(subTitle)
+                Text(viewModel.subTitle)
                     .font(.system(size: 14))
                     .foregroundStyle(.gray)
             }
@@ -34,5 +32,5 @@ struct SavedLocationRoad: View {
 }
 
 #Preview {
-    SavedLocationRoad(imageName: "house.circle.fill", title: "Title", subTitle: "SubTitle")
+    SavedLocationRoad(viewModel: .home)
 }

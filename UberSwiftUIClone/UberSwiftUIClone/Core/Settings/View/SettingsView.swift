@@ -48,9 +48,13 @@ struct SettingsView: View {
                 }
 
                 Section("Favorites") {
-                    SavedLocationRoad(imageName: "house.circle.fill", title: "Home", subTitle: "Add Home")
-
-                    SavedLocationRoad(imageName: "archivebox.circle.fill", title: "Work", subTitle: "Add Work")
+                    ForEach(SavedLocationViewModel.allCases) { viewModel in
+                        NavigationLink {
+                            Text(viewModel.title)
+                        } label: {
+                            SavedLocationRoad(viewModel: viewModel)
+                        }
+                    }
                 }
 
                 Section("Settings") {
