@@ -13,7 +13,8 @@ struct UberMapViewRepresentable: UIViewRepresentable {
     let mapView = MKMapView()
     @Binding var mapState: MapViewState
     @EnvironmentObject var locationViewModel: LocationSearchViewModel
-
+    @EnvironmentObject var homeViewModel: HomeViewModel
+    
     func makeUIView(context: Context) -> some UIView {
         mapView.delegate = context.coordinator
         mapView.isRotateEnabled = false
@@ -29,7 +30,7 @@ struct UberMapViewRepresentable: UIViewRepresentable {
         case .noInput:
             context.coordinator.clearMapViewAndRecenterOnUserLocation()
         case .showSideMenu, .searchingForLocation:
-            break
+            context.coordinator.addDriversToMap(User.mockDrivers)
         case .locationSelected:
             if let coordinate = locationViewModel.selectedUberLocation?.coordinate {
                 context.coordinator.addAndSelectAnnotation(withCoordinate: coordinate)
@@ -87,6 +88,14 @@ extension UberMapViewRepresentable {
             return polyline
         }
 
+        func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+            if let annotation = annotation as? DriverAnnotation {
+                let view = MKAnnotationView(annotation: annotation, reuseIdentifier: "driver")
+                view.image = UIImage(named: "chevron-sign-to-right")
+                return view
+            }
+            return nil
+        }
         // MARK: - Helpers
 
         func addAndSelectAnnotation(withCoordinate coordinate: CLLocationCoordinate2D) {
@@ -126,6 +135,10 @@ extension UberMapViewRepresentable {
             if let currentRegion {
                 parent.mapView.setRegion(currentRegion, animated: true)
             }
+        }
+
+        func addDriversToMap(_ drivers: [User]) {
+            parent.mapView.addAnnotations(drivers.map { DriverAnnotation(driver: $0)})
         }
     }
 }

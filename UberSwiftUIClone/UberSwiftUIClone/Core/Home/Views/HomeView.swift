@@ -13,6 +13,7 @@ struct HomeView: View {
     @State private var showSideMenu = false
     @EnvironmentObject var locationViewModel: LocationSearchViewModel
     @EnvironmentObject var authViewModel: AuthManager
+    @StateObject var homeViewModel: HomeViewModel
 
     var body: some View {
         Group {
@@ -88,7 +89,8 @@ extension HomeView {
 }
 
 #Preview {
-    HomeView()
+    HomeView(homeViewModel: HomeViewModel(authManager: AuthManager(service: MockAuthService())))
         .environmentObject(LocationSearchViewModel())
         .environmentObject(AuthManager(service: MockAuthService()))
+        .environmentObject(HomeViewModel(authManager: AuthManager(service: MockAuthService())))
 }

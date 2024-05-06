@@ -17,13 +17,17 @@ final class AuthManager: ObservableObject {
     }
 
     func registerUser(withEmail email: String, password: String, fullName: String) async {
+//        guard let location = LocationManager.shared.userLocation else { return }
         do {
             let uid = try await service.registerUser(withEmail: email, password: password, fullName: fullName)
             await MainActor.run {
                 currentUser = User(
                     fullName: fullName.isEmpty ? User.mockUser.fullName : fullName,
                     email: email.isEmpty ? User.mockUser.email : email,
-                    uid: uid
+                    uid: uid, 
+                    accountType: .driver,
+                    latitude: 38.38,
+                    longitude: -122.05
                 )
             }
         } catch {
@@ -38,7 +42,10 @@ final class AuthManager: ObservableObject {
                 currentUser = User(
                     fullName: User.mockUser.fullName,
                     email: email.isEmpty ? User.mockUser.email : email,
-                    uid: uid
+                    uid: uid, 
+                    accountType: .passenger,
+                    latitude: 38.38,
+                    longitude: -122.05
                 )
             }
         } catch {
@@ -59,7 +66,6 @@ final class AuthManager: ObservableObject {
             let user = try await service.fetchUser()
             await MainActor.run {
                 currentUser = user
-                print("hello \(user.fullName)")
             }
         } catch {
             print("Fetch user error - \(error.localizedDescription)")
