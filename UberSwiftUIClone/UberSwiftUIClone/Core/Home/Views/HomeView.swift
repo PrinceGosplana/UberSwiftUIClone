@@ -13,7 +13,7 @@ struct HomeView: View {
     @State private var showSideMenu = false
     @EnvironmentObject var locationViewModel: LocationSearchViewModel
     @EnvironmentObject var authViewModel: AuthManager
-    @StateObject var homeViewModel: HomeViewModel
+    @EnvironmentObject var homeViewModel: HomeViewModel
 
     var body: some View {
         Group {
@@ -34,6 +34,10 @@ struct HomeView: View {
                     }
                     .onAppear {
                         showSideMenu = false
+                    }
+                    .task {
+                        await authViewModel.fetchDrivers()
+                        homeViewModel.drivers = authViewModel.drivers ?? []
                     }
                 }
             }
@@ -85,12 +89,15 @@ extension HomeView {
                 mapState = .locationSelected
             }
         }
+        .onReceive(homeViewModel.$drivers) { drivers in
+            if !drivers.isEmpty {  }
+        }
     }
 }
 
 #Preview {
-    HomeView(homeViewModel: HomeViewModel(authManager: AuthManager(service: MockAuthService())))
+    HomeView()
         .environmentObject(LocationSearchViewModel())
         .environmentObject(AuthManager(service: MockAuthService()))
-        .environmentObject(HomeViewModel(authManager: AuthManager(service: MockAuthService())))
+        .environmentObject(HomeViewModel())
 }

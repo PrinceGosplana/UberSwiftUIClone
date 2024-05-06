@@ -18,7 +18,4 @@ actor MockAuthService: AuthServiceProtocol {
 
     func signOut() async { }
 
-    func fetchUser() async throws -> User {
-        User.mockUser
-    }
 }

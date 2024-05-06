@@ -12,7 +12,6 @@ struct MapViewActionButton: View {
     @Binding var mapState: MapViewState
     @Binding var showSideMenu: Bool
     @EnvironmentObject var viewModel: LocationSearchViewModel
-    @EnvironmentObject var authManager: AuthManager
 
     var body: some View {
         Button {
@@ -61,5 +60,4 @@ struct MapViewActionButton: View {
 #Preview {
     MapViewActionButton(mapState: .constant(.noInput), showSideMenu: .constant(false))
         .environmentObject(LocationSearchViewModel())
-        .environmentObject(AuthManager(service: MockAuthService()))
 }

@@ -30,7 +30,7 @@ struct UberMapViewRepresentable: UIViewRepresentable {
         case .noInput:
             context.coordinator.clearMapViewAndRecenterOnUserLocation()
         case .showSideMenu, .searchingForLocation:
-            context.coordinator.addDriversToMap(User.mockDrivers)
+            context.coordinator.addDriversToMap(homeViewModel.drivers)
         case .locationSelected:
             if let coordinate = locationViewModel.selectedUberLocation?.coordinate {
                 context.coordinator.addAndSelectAnnotation(withCoordinate: coordinate)

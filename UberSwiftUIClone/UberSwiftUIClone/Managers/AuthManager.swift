@@ -11,6 +11,7 @@ final class AuthManager: ObservableObject {
 
     private let service: AuthServiceProtocol
     @MainActor @Published var currentUser: User?
+    @MainActor @Published var drivers: [User]?
 
     init(service: AuthServiceProtocol) {
         self.service = service
@@ -30,6 +31,7 @@ final class AuthManager: ObservableObject {
                     longitude: -122.05
                 )
             }
+            await fetchDrivers()
         } catch {
             print("Register error \(error.localizedDescription)")
         }
@@ -47,7 +49,10 @@ final class AuthManager: ObservableObject {
                     latitude: 38.38,
                     longitude: -122.05
                 )
+
+
             }
+            await fetchDrivers()
         } catch {
             print("Login error \(error.localizedDescription)")
         }
@@ -60,15 +65,11 @@ final class AuthManager: ObservableObject {
         }
     }
 
-    func fetchUser() async {
-        if await currentUser != nil  { return }
-        do {
-            let user = try await service.fetchUser()
-            await MainActor.run {
-                currentUser = user
-            }
-        } catch {
-            print("Fetch user error - \(error.localizedDescription)")
+    func fetchDrivers() async {
+        guard let user = await currentUser else { return }
+        guard user.accountType == .passenger else { return }
+        await MainActor.run {
+            drivers = User.mockDrivers
         }
     }
 
