@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct SavedLocationRoad: View {
-
+    @EnvironmentObject var authManager: AuthManager
     let viewModel: SavedLocationViewModel
+//    @Binding var user: User?
 
     var body: some View {
         HStack(spacing: 12) {
@@ -23,9 +24,11 @@ struct SavedLocationRoad: View {
                     .font(.system(size: 15, weight: .semibold))
                     .foregroundStyle(Color.theme.primaryTextColor)
 
-                Text(viewModel.subTitle)
-                    .font(.system(size: 14))
-                    .foregroundStyle(.gray)
+                if let user = authManager.currentUser {
+                    Text(viewModel.subtitle(forUser: user))
+                        .font(.system(size: 14))
+                        .foregroundStyle(.gray)
+                }
             }
         }
     }
@@ -33,4 +36,5 @@ struct SavedLocationRoad: View {
 
 #Preview {
     SavedLocationRoad(viewModel: .home)
+        .environmentObject(AuthManager(service: MockAuthService()))
 }

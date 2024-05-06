@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct SavedLocation: Codable {
-    let titel: String
+struct SavedLocation: Codable, Hashable {
+    let title: String
     let address: String
     let latitude: CGFloat
     let longitude: CGFloat

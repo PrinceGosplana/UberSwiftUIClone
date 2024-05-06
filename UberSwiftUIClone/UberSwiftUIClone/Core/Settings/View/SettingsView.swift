@@ -9,12 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
 
-    private let user: User
     @EnvironmentObject var authManager: AuthManager
-
-    init(user: User) {
-        self.user = user
-    }
 
     var body: some View {
         VStack {
@@ -28,10 +23,10 @@ struct SettingsView: View {
                             .frame(width: 64, height: 64)
 
                         VStack(alignment: .leading, spacing: 8) {
-                            Text(user.fullName)
+                            Text(authManager.currentUser?.fullName ?? "")
                                 .font(.system(size: 16, weight: .semibold))
 
-                            Text(user.email)
+                            Text(authManager.currentUser?.email ?? "")
                                 .font(.system(size: 14))
                                 .tint(Color.theme.primaryTextColor)
                                 .opacity(0.77)
@@ -50,7 +45,7 @@ struct SettingsView: View {
                 Section("Favorites") {
                     ForEach(SavedLocationViewModel.allCases) { viewModel in
                         NavigationLink {
-                            SavedLocationSearchView()
+                            SavedLocationSearchView(config: viewModel)
                         } label: {
                             SavedLocationRoad(viewModel: viewModel)
                         }
@@ -81,7 +76,7 @@ struct SettingsView: View {
 
 #Preview {
     NavigationStack {
-        SettingsView(user: User.mockUser)
+        SettingsView()
             .environmentObject(AuthManager(service: MockAuthService()))
     }
 }

@@ -9,34 +9,38 @@ import SwiftUI
 
 struct SavedLocationSearchView: View {
 
+    @EnvironmentObject var authManager: AuthManager
     @StateObject var viewModel = LocationSearchViewModel()
+    let config: SavedLocationViewModel
 
     var body: some View {
         VStack {
-            HStack(spacing: 16) {
-                Image(systemName: "arrow.left")
-                    .font(.title2)
-                    .imageScale(.medium)
-                    .padding(.leading)
-
-                TextField("Search for a location...", text: $viewModel.queryFragment)
-                    .frame(height: 32)
-                    .padding(.leading)
-                    .background(Color(.systemGray5))
-                    .padding(.trailing)
-            }
-            .padding(.top)
+            TextField("Search for a location...", text: $viewModel.queryFragment)
+                .frame(height: 32)
+                .padding(.leading)
+                .background(Color(.systemGray5))
+                .padding()
 
             Spacer()
 
-            LocationSearchResults(viewModel: viewModel, config: .saveLocation)
+            LocationSearchResults(viewModel: viewModel, config: .saveLocation(config))
         }
-        .navigationTitle("Add Home")
+        .onChange(of: viewModel.savedLocations) {
+            switch config {
+            case .home:
+                authManager.currentUser?.homeLocation = viewModel.savedLocations.last
+            case .work:
+                authManager.currentUser?.workLocation = viewModel.savedLocations.last
+            }
+        }
+        .navigationTitle(config.subTitle)
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
 #Preview {
     NavigationStack {
-        SavedLocationSearchView()
+        SavedLocationSearchView(config: .home)
+            .environmentObject(AuthManager(service: MockAuthService()))
     }
 }

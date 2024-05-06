@@ -82,7 +82,7 @@ struct SideMenuView: View {
                 case .wallet:
                     Text("Wallet")
                 case .settings:
-                    SettingsView(user: user)
+                    SettingsView()
                 case .messages:
                     Text("Messages")
                 }

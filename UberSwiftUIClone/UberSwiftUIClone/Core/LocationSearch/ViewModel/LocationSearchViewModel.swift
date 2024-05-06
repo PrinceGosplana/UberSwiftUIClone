@@ -9,7 +9,7 @@ import Foundation
 import MapKit
 
 enum LocationResultsViewConfig {
-    case ride, saveLocation
+    case ride, saveLocation(SavedLocationViewModel)
 }
 
 final class LocationSearchViewModel: NSObject, ObservableObject {
@@ -19,7 +19,8 @@ final class LocationSearchViewModel: NSObject, ObservableObject {
     @Published var selectedUberLocation: UberLocation?
     @Published var pickupTime: String?
     @Published var dropOffTime: String?
-    
+    @Published var savedLocations: [SavedLocation]
+
     private let searchCompleter = MKLocalSearchCompleter()
     var queryFragment: String = "" {
         didSet {
@@ -30,6 +31,7 @@ final class LocationSearchViewModel: NSObject, ObservableObject {
     var userLocation: CLLocationCoordinate2D?
     
     override init() {
+        savedLocations = []
         super.init()
         searchCompleter.delegate = self
         searchCompleter.queryFragment = queryFragment
@@ -38,23 +40,32 @@ final class LocationSearchViewModel: NSObject, ObservableObject {
     // MARK: - Helpers
 
     func selectLocation(_ localSearch: MKLocalSearchCompletion, config: LocationResultsViewConfig) {
-        switch config {
-        case .ride:
-            locationSearch(forLocalSearchCompletion: localSearch) { response, error in
 
-                if let error  {
-                    print("Location search failed with error \(error.localizedDescription)")
-                    return
-                }
-                guard let item = response?.mapItems.first else { return }
-                let coordinate = item.placemark.coordinate
+        locationSearch(forLocalSearchCompletion: localSearch) { response, error in
+
+            if let error  {
+                print("Location search failed with error \(error.localizedDescription)")
+                return
+            }
+            guard let item = response?.mapItems.first else { return }
+            let coordinate = item.placemark.coordinate
+            
+            switch config {
+            case .ride:
                 self.selectedUberLocation = UberLocation(
                     title: localSearch.title,
                     coordinate: coordinate
                 )
+            case .saveLocation:
+                let savedLocation = SavedLocation(
+                    title: localSearch.title,
+                    address: localSearch.subtitle,
+                    latitude: coordinate.latitude,
+                    longitude: coordinate.longitude
+                )
+                self.savedLocations.append(savedLocation)
+                break
             }
-        case .saveLocation:
-            break
         }
     }
 
