@@ -27,6 +27,8 @@
 		8AD9D3572BE9056800D0CEE6 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD9D3562BE9056800D0CEE6 /* HomeViewModel.swift */; };
 		8AD9D3592BE911D600D0CEE6 /* DriverAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD9D3582BE911D600D0CEE6 /* DriverAnnotation.swift */; };
 		8AD9D35D2BE9D74500D0CEE6 /* AcceptTripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD9D35C2BE9D74500D0CEE6 /* AcceptTripView.swift */; };
+		8AD9D35F2BEA099000D0CEE6 /* Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD9D35E2BEA099000D0CEE6 /* Trip.swift */; };
+		8AD9D3612BEA0A4500D0CEE6 /* GeoPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD9D3602BEA0A4500D0CEE6 /* GeoPoint.swift */; };
 		8ADF1AB62BE2652500F0C67F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADF1AB52BE2652500F0C67F /* HomeView.swift */; };
 		8ADF1AB82BE265F100F0C67F /* UberMapViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADF1AB72BE265F100F0C67F /* UberMapViewRepresentable.swift */; };
 		8ADF1ABC2BE267B000F0C67F /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADF1ABB2BE267B000F0C67F /* LocationManager.swift */; };
@@ -70,6 +72,8 @@
 		8AD9D3562BE9056800D0CEE6 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		8AD9D3582BE911D600D0CEE6 /* DriverAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverAnnotation.swift; sourceTree = "<group>"; };
 		8AD9D35C2BE9D74500D0CEE6 /* AcceptTripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptTripView.swift; sourceTree = "<group>"; };
+		8AD9D35E2BEA099000D0CEE6 /* Trip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trip.swift; sourceTree = "<group>"; };
+		8AD9D3602BEA0A4500D0CEE6 /* GeoPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoPoint.swift; sourceTree = "<group>"; };
 		8ADF1AB52BE2652500F0C67F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		8ADF1AB72BE265F100F0C67F /* UberMapViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UberMapViewRepresentable.swift; sourceTree = "<group>"; };
 		8ADF1ABB2BE267B000F0C67F /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
@@ -225,6 +229,8 @@
 				8ADF1AD52BE51C7400F0C67F /* UberLocation.swift */,
 				8AD9D3362BE65ECD00D0CEE6 /* User.swift */,
 				8AD9D3582BE911D600D0CEE6 /* DriverAnnotation.swift */,
+				8AD9D35E2BEA099000D0CEE6 /* Trip.swift */,
+				8AD9D3602BEA0A4500D0CEE6 /* GeoPoint.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -442,6 +448,7 @@
 				8ADF1AD42BE5143400F0C67F /* Double.swift in Sources */,
 				8ADF1ADF2BE539C200F0C67F /* RegistrationView.swift in Sources */,
 				8AD9D3332BE6439600D0CEE6 /* AuthService.swift in Sources */,
+				8AD9D35F2BEA099000D0CEE6 /* Trip.swift in Sources */,
 				8AD9D3402BE6AE9E00D0CEE6 /* SideMenuOptionView.swift in Sources */,
 				8AD9D32E2BE638FA00D0CEE6 /* AuthManager.swift in Sources */,
 				8ADF1ACC2BE3D62D00F0C67F /* MapViewState.swift in Sources */,
@@ -461,6 +468,7 @@
 				8AD9D3552BE8F31900D0CEE6 /* DeveloperPreview.swift in Sources */,
 				8ADF1AB62BE2652500F0C67F /* HomeView.swift in Sources */,
 				8AD9D3512BE7E69B00D0CEE6 /* LocationSearchResults.swift in Sources */,
+				8AD9D3612BEA0A4500D0CEE6 /* GeoPoint.swift in Sources */,
 				8AD9D33C2BE69ED600D0CEE6 /* SideMenuView.swift in Sources */,
 				8AD9D3452BE7B07600D0CEE6 /* SettingsView.swift in Sources */,
 				8ADF1AC82BE28B3300F0C67F /* LocationSearchResultCell.swift in Sources */,

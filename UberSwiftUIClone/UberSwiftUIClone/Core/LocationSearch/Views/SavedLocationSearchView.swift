@@ -10,7 +10,7 @@ import SwiftUI
 struct SavedLocationSearchView: View {
 
     @EnvironmentObject var authManager: AuthManager
-    @StateObject var viewModel = LocationSearchViewModel()
+    @StateObject var viewModel = HomeViewModel()
     let config: SavedLocationViewModel
 
     var body: some View {
@@ -25,12 +25,12 @@ struct SavedLocationSearchView: View {
 
             LocationSearchResults(viewModel: viewModel, config: .saveLocation(config))
         }
-        .onChange(of: viewModel.savedLocations) {
+        .onChange(of: viewModel.savedLocation) {
             switch config {
             case .home:
-                authManager.currentUser?.homeLocation = viewModel.savedLocations.last
+                authManager.currentUser?.homeLocation = viewModel.savedLocation
             case .work:
-                authManager.currentUser?.workLocation = viewModel.savedLocations.last
+                authManager.currentUser?.workLocation = viewModel.savedLocation
             }
         }
         .navigationTitle(config.subTitle)

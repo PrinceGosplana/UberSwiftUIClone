@@ -10,7 +10,7 @@ import SwiftUI
 struct RideRequestView: View {
 
     @State private var selectedRideType: RideType = .uberX
-    @EnvironmentObject var locationViewModel: LocationSearchViewModel
+    @EnvironmentObject var homeViewModel: HomeViewModel
 
     var body: some View {
         VStack {
@@ -44,14 +44,14 @@ struct RideRequestView: View {
 
                         Spacer()
 
-                        Text(locationViewModel.pickupTime ?? "")
+                        Text(homeViewModel.pickupTime ?? "")
                             .font(.footnote)
                             .fontWeight(.semibold)
                     }
                     .padding(.bottom, 10)
 
                     HStack {
-                        if let location = locationViewModel.selectedUberLocation {
+                        if let location = homeViewModel.selectedUberLocation {
                             Text(location.title)
                                 .font(.subheadline)
                                 .foregroundStyle(Color.theme.primaryTextColor)
@@ -60,7 +60,7 @@ struct RideRequestView: View {
 
                         Spacer()
 
-                        Text(locationViewModel.dropOffTime ?? "")
+                        Text(homeViewModel.dropOffTime ?? "")
                             .font(.footnote)
                             .fontWeight(.semibold)
                     }
@@ -92,7 +92,7 @@ struct RideRequestView: View {
                             VStack(alignment: .leading, spacing: 4) {
                                 Text(type.description)
 
-                                Text(locationViewModel.computeRidePrice(forType: type).toCurrency())
+                                Text(homeViewModel.computeRidePrice(forType: type).toCurrency())
 
                             }
                             .font(.subheadline)
@@ -165,5 +165,5 @@ struct RideRequestView: View {
 
 #Preview {
     RideRequestView()
-        .environmentObject(LocationSearchViewModel())
+        .environmentObject(HomeViewModel())
 }

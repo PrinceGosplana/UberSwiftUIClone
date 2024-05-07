@@ -64,12 +64,13 @@ final class AuthManager: ObservableObject {
             currentUser = nil
         }
     }
-
+    
     func fetchDrivers() async {
         guard let user = await currentUser else { return }
         guard user.accountType == .passenger else { return }
+        let drivers = await service.fetchDrivers()
         await MainActor.run {
-            drivers = User.mockDrivers
+            self.drivers = drivers
         }
     }
 

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LocationSearchResults: View {
 
-    @StateObject var viewModel: LocationSearchViewModel
+    @StateObject var viewModel: HomeViewModel
     let config: LocationResultsViewConfig
 
     var body: some View {

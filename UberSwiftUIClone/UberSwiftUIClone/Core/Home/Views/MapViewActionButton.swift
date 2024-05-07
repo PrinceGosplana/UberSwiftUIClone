@@ -11,7 +11,7 @@ struct MapViewActionButton: View {
 
     @Binding var mapState: MapViewState
     @Binding var showSideMenu: Bool
-    @EnvironmentObject var viewModel: LocationSearchViewModel
+    @EnvironmentObject var viewModel: HomeViewModel
 
     var body: some View {
         Button {
@@ -36,14 +36,19 @@ struct MapViewActionButton: View {
     func actionForState(_ state: MapViewState) {
         switch state {
         case .noInput:
-            break
+            showSideMenu.toggle()
         case .searchingForLocation:
             mapState = .showSideMenu
-        case .locationSelected, .polylineAdded:
+        case .locationSelected:
+            mapState = .showSideMenu
+            viewModel.selectedUberLocation = nil
+        case .polylineAdded:
             mapState = .showSideMenu
             viewModel.selectedUberLocation = nil
         case .showSideMenu:
             showSideMenu.toggle()
+            mapState = .noInput
+            viewModel.selectedUberLocation = nil
         }
     }
 
@@ -59,5 +64,5 @@ struct MapViewActionButton: View {
 
 #Preview {
     MapViewActionButton(mapState: .constant(.noInput), showSideMenu: .constant(false))
-        .environmentObject(LocationSearchViewModel())
+        .environmentObject(HomeViewModel())
 }

@@ -20,6 +20,7 @@ final class LocationSearchViewModel: NSObject, ObservableObject {
     @Published var pickupTime: String?
     @Published var dropOffTime: String?
     @Published var savedLocations: [SavedLocation]
+    var userLocation: CLLocationCoordinate2D?
 
     private let searchCompleter = MKLocalSearchCompleter()
     var queryFragment: String = "" {
@@ -28,8 +29,6 @@ final class LocationSearchViewModel: NSObject, ObservableObject {
         }
     }
 
-    var userLocation: CLLocationCoordinate2D?
-    
     override init() {
         savedLocations = []
         super.init()
