@@ -35,8 +35,7 @@ struct HomeView: View {
                         showSideMenu = false
                     }
                     .task {
-                        await authViewModel.fetchDrivers()
-                        homeViewModel.drivers = authViewModel.drivers ?? []
+                        await homeViewModel.fetchDrivers()
                     }
                 }
             }

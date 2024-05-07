@@ -38,23 +38,77 @@ final class HomeViewModel: NSObject, ObservableObject {
 
     func fetchUser() async {
         let user = await service.fetchCurrentUser()
+        currentUser = user
         guard user.accountType == .passenger else { return }
         await fetchDrivers()
     }
 
     func fetchDrivers() async {
         let drivers = await service.fetchDrivers()
-
+        print("Drivers \(drivers)")
         await MainActor.run {
             self.drivers = drivers
         }
     }
 }
 
+// MARK: - Passenger API
+
+extension HomeViewModel {
+
+    func requestTrip() {
+        print("Drivers \(drivers)")
+        guard let driver = drivers.first else { return }
+        guard let currentUser else { return }
+        guard let dropoffLocation = selectedUberLocation else { return }
+        let dropoffCeoPoint = GeoPoint(
+            latitude: dropoffLocation.coordinate.latitude,
+            longitude: dropoffLocation.coordinate.longitude
+        )
+        let userLocation = CLLocation(latitude: currentUser.coordinates.latitude, longitude: currentUser.coordinates.longitude)
+        getPlacemark(forLocation: userLocation) { placemark, error in
+            guard let placemark else { return }
+
+            let trip = Trip(
+                id: UUID().uuidString,
+                passengerUid: currentUser.uid,
+                driverUid: driver.uid,
+                passengerName: currentUser.fullName,
+                driverName: driver.fullName,
+                passengerLocation: currentUser.coordinates,
+                driverLocation: driver.coordinates,
+                pickupLocationName: placemark.name ?? "Current location",
+                dropoffLocationName: dropoffLocation.title,
+                pickupLocationAddress: "123 Main St",
+                pickupLocation: currentUser.coordinates,
+                dropoffLocation: dropoffCeoPoint,
+                tripCost: 50.0)
+            // store here
+        }
+    }
+}
+
+// MARK: - Driver API
+
+extension HomeViewModel {
+
+}
+
 // MARK: - Location search helpers
 
 extension HomeViewModel {
 
+    func getPlacemark(forLocation location: CLLocation, completion: @escaping(CLPlacemark?, Error?) -> Void) {
+        CLGeocoder().reverseGeocodeLocation(location) { placemarks, error in
+            if let error {
+                completion(nil, error)
+                return
+            }
+
+            guard let placemark = placemarks?.first else { return }
+            completion(placemark, nil)
+        }
+    }
     func selectLocation(_ localSearch: MKLocalSearchCompletion, config: LocationResultsViewConfig) {
 
         locationSearch(forLocalSearchCompletion: localSearch) { response, error in

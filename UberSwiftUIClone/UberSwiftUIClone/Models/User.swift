@@ -16,8 +16,7 @@ struct User: Codable, Hashable {
     var email: String
     let uid: String
     var accountType: AccountType
-    var latitude: CGFloat
-    var longitude: CGFloat
+    var coordinates: GeoPoint
     var homeLocation: SavedLocation?
     var workLocation: SavedLocation?
     
@@ -27,12 +26,12 @@ struct User: Codable, Hashable {
 }
 
 extension User {
-    static let mockUser = User(fullName: "Steven King", email: "steven@gmail.com", uid: UUID().uuidString, accountType: .passenger, latitude: 37.38, longitude: -122.05)
+    static let mockUser = User(fullName: "Steven King", email: "steven@gmail.com", uid: UUID().uuidString, accountType: .passenger, coordinates: GeoPoint(latitude: 37.38, longitude: -122.05))
     static let mockDrivers: [User] = [
-        .init(fullName: "Reno Logan", email: "logan@gmail.com", uid: UUID().uuidString, accountType: .driver, latitude: 37.32, longitude: -122.03),
-        .init(fullName: "Honda Civic", email: "civic@gmail.com", uid: UUID().uuidString, accountType: .driver, latitude: 37.39, longitude: -122.09),
-        .init(fullName: "Honda Accord", email: "accord@gmail.com", uid: UUID().uuidString, accountType: .driver, latitude: 37.37, longitude: -122.07),
-        .init(fullName: "Toyota Camry", email: "camry@gmail.com", uid: UUID().uuidString, accountType: .driver, latitude: 37.27, longitude: -122.03)
+        .init(fullName: "Reno Logan", email: "logan@gmail.com", uid: UUID().uuidString, accountType: .driver, coordinates: GeoPoint(latitude: 37.32, longitude: -122.03)),
+        .init(fullName: "Honda Civic", email: "civic@gmail.com", uid: UUID().uuidString, accountType: .driver, coordinates: GeoPoint(latitude: 37.39, longitude: -122.09)),
+        .init(fullName: "Honda Accord", email: "accord@gmail.com", uid: UUID().uuidString, accountType: .driver, coordinates: GeoPoint(latitude: 37.37, longitude: -122.07)),
+        .init(fullName: "Toyota Camry", email: "camry@gmail.com", uid: UUID().uuidString, accountType: .driver, coordinates: GeoPoint(latitude: 37.27, longitude: -122.03))
     ]
     
 }

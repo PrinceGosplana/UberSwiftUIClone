@@ -27,8 +27,7 @@ final class AuthManager: ObservableObject {
                     email: email.isEmpty ? User.mockUser.email : email,
                     uid: uid, 
                     accountType: .driver,
-                    latitude: 38.38,
-                    longitude: -122.05
+                    coordinates: GeoPoint(latitude: 38.38, longitude: -122.05)
                 )
             }
             await fetchDrivers()
@@ -46,11 +45,8 @@ final class AuthManager: ObservableObject {
                     email: email.isEmpty ? User.mockUser.email : email,
                     uid: uid, 
                     accountType: .passenger,
-                    latitude: 38.38,
-                    longitude: -122.05
+                    coordinates: GeoPoint(latitude: 38.38, longitude: -122.05)
                 )
-
-
             }
             await fetchDrivers()
         } catch {

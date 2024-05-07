@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct GeoPoint: Codable {
+struct GeoPoint: Codable, Hashable {
     let latitude: CGFloat
     let longitude: CGFloat
 }

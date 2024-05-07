@@ -21,8 +21,7 @@ final class DeveloperPreview {
         email: "Dou",
         uid: "1111",
         accountType: .passenger,
-        latitude: 38.83,
-        longitude: -122.05,
+        coordinates: GeoPoint(latitude: 38.83, longitude: -122.05),
         homeLocation: nil,
         workLocation: nil
     )

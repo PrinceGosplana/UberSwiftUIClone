@@ -13,8 +13,8 @@ final class DriverAnnotation: NSObject, MKAnnotation {
 
     init(driver: User) {
         let coordinate = CLLocationCoordinate2D(
-            latitude: driver.latitude,
-            longitude: driver.longitude
+            latitude: driver.coordinates.latitude,
+            longitude: driver.coordinates.longitude
         )
         self.coordinate = coordinate
         self.uid = driver.uid
