@@ -26,6 +26,7 @@
 		8AD9D3552BE8F31900D0CEE6 /* DeveloperPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD9D3542BE8F31900D0CEE6 /* DeveloperPreview.swift */; };
 		8AD9D3572BE9056800D0CEE6 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD9D3562BE9056800D0CEE6 /* HomeViewModel.swift */; };
 		8AD9D3592BE911D600D0CEE6 /* DriverAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD9D3582BE911D600D0CEE6 /* DriverAnnotation.swift */; };
+		8AD9D35D2BE9D74500D0CEE6 /* AcceptTripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD9D35C2BE9D74500D0CEE6 /* AcceptTripView.swift */; };
 		8ADF1AB62BE2652500F0C67F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADF1AB52BE2652500F0C67F /* HomeView.swift */; };
 		8ADF1AB82BE265F100F0C67F /* UberMapViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADF1AB72BE265F100F0C67F /* UberMapViewRepresentable.swift */; };
 		8ADF1ABC2BE267B000F0C67F /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADF1ABB2BE267B000F0C67F /* LocationManager.swift */; };
@@ -68,6 +69,7 @@
 		8AD9D3542BE8F31900D0CEE6 /* DeveloperPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperPreview.swift; sourceTree = "<group>"; };
 		8AD9D3562BE9056800D0CEE6 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		8AD9D3582BE911D600D0CEE6 /* DriverAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverAnnotation.swift; sourceTree = "<group>"; };
+		8AD9D35C2BE9D74500D0CEE6 /* AcceptTripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptTripView.swift; sourceTree = "<group>"; };
 		8ADF1AB52BE2652500F0C67F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		8ADF1AB72BE265F100F0C67F /* UberMapViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UberMapViewRepresentable.swift; sourceTree = "<group>"; };
 		8ADF1ABB2BE267B000F0C67F /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
@@ -286,6 +288,7 @@
 			isa = PBXGroup;
 			children = (
 				8ADF1ACE2BE409A800F0C67F /* RideRequestView.swift */,
+				8AD9D35C2BE9D74500D0CEE6 /* AcceptTripView.swift */,
 			);
 			path = Trips;
 			sourceTree = "<group>";
@@ -447,6 +450,7 @@
 				8ADF1AD82BE52D4D00F0C67F /* Color.swift in Sources */,
 				8AD9D3592BE911D600D0CEE6 /* DriverAnnotation.swift in Sources */,
 				8ADF1AB82BE265F100F0C67F /* UberMapViewRepresentable.swift in Sources */,
+				8AD9D35D2BE9D74500D0CEE6 /* AcceptTripView.swift in Sources */,
 				8ADF1AC22BE2704700F0C67F /* LocationSearchActivationView.swift in Sources */,
 				8AD9D3312BE642B600D0CEE6 /* AuthServiceProtocol.swift in Sources */,
 				8AD9D33E2BE6ADCA00D0CEE6 /* SideMenuOptionViewModel.swift in Sources */,
