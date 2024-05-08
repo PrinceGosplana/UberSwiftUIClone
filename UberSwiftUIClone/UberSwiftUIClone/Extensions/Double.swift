@@ -17,7 +17,19 @@ extension Double {
         return formatter
     }
 
+    private var distanceFormatter: NumberFormatter {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = 1
+        return formatter
+    }
+
     func toCurrency() -> String {
         currencyFormatter.string(for: self) ?? ""
+    }
+
+    func distanceMilesString() -> String {
+        distanceFormatter.string(for: self / 1600) ?? ""
     }
 }

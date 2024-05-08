@@ -21,6 +21,8 @@ struct Trip: Identifiable, Codable {
     let pickupLocation: GeoPoint
     let dropoffLocation: GeoPoint
     let tripCost: Double
+    var distanceToPassenger: Double
+    var travelTimeToPassenger: Int
 }
 
 extension Trip {
@@ -38,7 +40,9 @@ extension Trip {
             pickupLocationAddress: "12 Base ave",
             pickupLocation: GeoPoint(latitude: 37.38, longitude: -122.05),
             dropoffLocation: GeoPoint(latitude: 37.32, longitude: -122.03),
-            tripCost: 50.0
+            tripCost: 50.0,
+            distanceToPassenger: 1000,
+            travelTimeToPassenger: 24
         )
     ]
 }

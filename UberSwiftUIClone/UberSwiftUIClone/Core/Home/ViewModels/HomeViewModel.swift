@@ -72,9 +72,11 @@ extension HomeViewModel {
             longitude: dropoffLocation.coordinate.longitude
         )
         let userLocation = CLLocation(latitude: currentUser.coordinates.latitude, longitude: currentUser.coordinates.longitude)
-        getPlacemark(forLocation: userLocation) { placemark, error in
+        getPlacemark(forLocation: userLocation) { [self]
+            placemark,
+            error in
             guard let placemark else { return }
-
+            
             let trip = Trip(
                 id: UUID().uuidString,
                 passengerUid: currentUser.uid,
@@ -85,10 +87,13 @@ extension HomeViewModel {
                 driverLocation: driver.coordinates,
                 pickupLocationName: placemark.name ?? "Current location",
                 dropoffLocationName: dropoffLocation.title,
-                pickupLocationAddress: "123 Main St",
+                pickupLocationAddress: self.addressFromPlacemark(placemark),
                 pickupLocation: currentUser.coordinates,
                 dropoffLocation: dropoffCeoPoint,
-                tripCost: 50.0)
+                tripCost: computeRidePrice(forType: .uberX),
+                distanceToPassenger: 0,
+                travelTimeToPassenger: 0
+            )
             // store here
         }
     }
@@ -101,7 +106,12 @@ extension HomeViewModel {
         do {
             let trips = try await tripService.fetchTrips()
             await MainActor.run {
-                trip = trips.first
+                guard let trip = trips.first else { return }
+                self.trip = trip
+                getDestinationRoute(from: trip.driverLocation.toCoordinate(), to: trip.pickupLocation.toCoordinate()) { route in
+                    self.trip?.travelTimeToPassenger = Int(route.expectedTravelTime / 60)
+                    self.trip?.distanceToPassenger = route.distance
+                }
             }
         } catch {
             print("Error while fetching trips \(error.localizedDescription)")
@@ -114,7 +124,25 @@ extension HomeViewModel {
 
 extension HomeViewModel {
 
-    func getPlacemark(forLocation location: CLLocation, completion: @escaping(CLPlacemark?, Error?) -> Void) {
+    private func addressFromPlacemark(_ placemark: CLPlacemark) -> String {
+        var result = ""
+
+        if let thoroughfare = placemark.thoroughfare {
+            result += thoroughfare
+        }
+
+        if let subthoroughfare = placemark.subThoroughfare {
+            result += " \(subthoroughfare)"
+        }
+
+        if let subadministrativeArea = placemark.subAdministrativeArea {
+            result += ", \(subadministrativeArea)"
+        }
+
+        return result
+    }
+
+    private func getPlacemark(forLocation location: CLLocation, completion: @escaping(CLPlacemark?, Error?) -> Void) {
         CLGeocoder().reverseGeocodeLocation(location) { placemarks, error in
             if let error {
                 completion(nil, error)
