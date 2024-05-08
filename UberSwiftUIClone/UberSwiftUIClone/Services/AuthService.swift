@@ -24,7 +24,7 @@ actor AuthService: AuthServiceProtocol {
     func signOut() async { }
 
     func fetchCurrentUser() async -> User {
-        user = User.mockDriver
+        user = User.mockUser
         return user ?? User.mockUser
     }
 

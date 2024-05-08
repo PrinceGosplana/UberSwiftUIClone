@@ -37,6 +37,12 @@ struct UberMapViewRepresentable: UIViewRepresentable {
                 context.coordinator.configurePolyline(withDestinationCoordinate: coordinate)
             }
         case .polylineAdded: break
+        case .tripRequested:
+            break
+        case .tripRejected:
+            break
+        case .tripAccepted:
+            break
         }
     }
 

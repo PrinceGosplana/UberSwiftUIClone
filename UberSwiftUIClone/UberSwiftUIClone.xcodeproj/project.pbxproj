@@ -11,6 +11,9 @@
 		8A39D75D2BEB634A00102713 /* TripService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A39D75C2BEB634A00102713 /* TripService.swift */; };
 		8A39D75F2BEB639800102713 /* MockTripService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A39D75E2BEB639800102713 /* MockTripService.swift */; };
 		8A39D7612BEB72D900102713 /* GeoPoint+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A39D7602BEB72D900102713 /* GeoPoint+Ext.swift */; };
+		8A39D7632BEBA15500102713 /* TripLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A39D7622BEBA15500102713 /* TripLoading.swift */; };
+		8A39D7652BEBA1A600102713 /* TripAccepted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A39D7642BEBA1A600102713 /* TripAccepted.swift */; };
+		8A39D7672BEBB2F500102713 /* Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A39D7662BEBB2F500102713 /* Spinner.swift */; };
 		8AD9D32C2BE6252300D0CEE6 /* CustomInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD9D32B2BE6252300D0CEE6 /* CustomInputField.swift */; };
 		8AD9D32E2BE638FA00D0CEE6 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD9D32D2BE638F900D0CEE6 /* AuthManager.swift */; };
 		8AD9D3312BE642B600D0CEE6 /* AuthServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD9D3302BE642B600D0CEE6 /* AuthServiceProtocol.swift */; };
@@ -60,6 +63,9 @@
 		8A39D75C2BEB634A00102713 /* TripService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripService.swift; sourceTree = "<group>"; };
 		8A39D75E2BEB639800102713 /* MockTripService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTripService.swift; sourceTree = "<group>"; };
 		8A39D7602BEB72D900102713 /* GeoPoint+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GeoPoint+Ext.swift"; sourceTree = "<group>"; };
+		8A39D7622BEBA15500102713 /* TripLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripLoading.swift; sourceTree = "<group>"; };
+		8A39D7642BEBA1A600102713 /* TripAccepted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripAccepted.swift; sourceTree = "<group>"; };
+		8A39D7662BEBB2F500102713 /* Spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spinner.swift; sourceTree = "<group>"; };
 		8AD9D32B2BE6252300D0CEE6 /* CustomInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputField.swift; sourceTree = "<group>"; };
 		8AD9D32D2BE638F900D0CEE6 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		8AD9D3302BE642B600D0CEE6 /* AuthServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServiceProtocol.swift; sourceTree = "<group>"; };
@@ -123,6 +129,7 @@
 				8AD9D3462BE7B87500D0CEE6 /* SavedLocationRoad.swift */,
 				8AD9D3482BE7B9E200D0CEE6 /* SettingsRow.swift */,
 				8AD9D3502BE7E69B00D0CEE6 /* LocationSearchResults.swift */,
+				8A39D7662BEBB2F500102713 /* Spinner.swift */,
 			);
 			path = "Reusable Items";
 			sourceTree = "<group>";
@@ -307,6 +314,8 @@
 			children = (
 				8ADF1ACE2BE409A800F0C67F /* RideRequestView.swift */,
 				8AD9D35C2BE9D74500D0CEE6 /* AcceptTripView.swift */,
+				8A39D7622BEBA15500102713 /* TripLoading.swift */,
+				8A39D7642BEBA1A600102713 /* TripAccepted.swift */,
 			);
 			path = Trips;
 			sourceTree = "<group>";
@@ -475,9 +484,11 @@
 				8A39D75B2BEB62C900102713 /* TripServiceProtocol.swift in Sources */,
 				8A39D7612BEB72D900102713 /* GeoPoint+Ext.swift in Sources */,
 				8AD9D33E2BE6ADCA00D0CEE6 /* SideMenuOptionViewModel.swift in Sources */,
+				8A39D7652BEBA1A600102713 /* TripAccepted.swift in Sources */,
 				8AD9D3352BE643A000D0CEE6 /* MockAuthService.swift in Sources */,
 				8ADF1AD62BE51C7400F0C67F /* UberLocation.swift in Sources */,
 				8AD9D3532BE7EA7200D0CEE6 /* SavedLocation.swift in Sources */,
+				8A39D7672BEBB2F500102713 /* Spinner.swift in Sources */,
 				8AD9D3572BE9056800D0CEE6 /* HomeViewModel.swift in Sources */,
 				8AD9D3552BE8F31900D0CEE6 /* DeveloperPreview.swift in Sources */,
 				8ADF1AB62BE2652500F0C67F /* HomeView.swift in Sources */,
@@ -487,6 +498,7 @@
 				8AD9D33C2BE69ED600D0CEE6 /* SideMenuView.swift in Sources */,
 				8A39D75F2BEB639800102713 /* MockTripService.swift in Sources */,
 				8AD9D3452BE7B07600D0CEE6 /* SettingsView.swift in Sources */,
+				8A39D7632BEBA15500102713 /* TripLoading.swift in Sources */,
 				8ADF1AC82BE28B3300F0C67F /* LocationSearchResultCell.swift in Sources */,
 				8ADF1ADD2BE539B600F0C67F /* LoginView.swift in Sources */,
 				8AD9D32C2BE6252300D0CEE6 /* CustomInputField.swift in Sources */,

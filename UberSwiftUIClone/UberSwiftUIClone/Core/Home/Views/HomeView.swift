@@ -71,14 +71,29 @@ extension HomeView {
                 .padding(.top, 4)
             }
 
-            if mapState == .locationSelected || mapState == .polylineAdded {
-                RideRequestView()
-                    .transition(.move(edge: .bottom))
-            }
+            if let user = homeViewModel.currentUser {
+                if user.accountType == .passenger {
+                    if mapState == .locationSelected || mapState == .polylineAdded {
+                        RideRequestView()
+                            .transition(.move(edge: .bottom))
+                    } else if mapState == .tripRequested {
+                        TripLoading()
+                            .transition(.move(edge: .bottom))
+                    } else if mapState == .tripAccepted {
+                        TripAccepted()
+                            .transition(.move(edge: .bottom))
+                    } else if mapState == .tripRejected {
 
-            if let trip = homeViewModel.trip {
-                AcceptTripView(trip: trip)
-                    .transition(.move(edge: .bottom))
+                    }
+
+                } else {
+                    if let trip = homeViewModel.trip {
+                        withAnimation {
+                            AcceptTripView(trip: trip, with: homeViewModel)
+                                .transition(.move(edge: .bottom))
+                        }
+                    }
+                }
             }
         }
         .ignoresSafeArea(edges: [.bottom])
@@ -92,6 +107,16 @@ extension HomeView {
                 mapState = .locationSelected
             }
         }
+        .onReceive(homeViewModel.$trip, perform: { trip in
+            guard let trip else { return }
+            withAnimation(.spring()) {
+                switch trip.state {
+                case .requested: mapState = .tripRequested
+                case .rejected: mapState = .tripRejected
+                case .accepted: mapState = .tripAccepted
+                }
+            }
+        })
 //        .onReceive(homeViewModel.$drivers) { drivers in
 //            if !drivers.isEmpty {  }
 //        }

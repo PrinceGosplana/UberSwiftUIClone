@@ -92,7 +92,8 @@ extension HomeViewModel {
                 dropoffLocation: dropoffCeoPoint,
                 tripCost: computeRidePrice(forType: .uberX),
                 distanceToPassenger: 0,
-                travelTimeToPassenger: 0
+                travelTimeToPassenger: 0,
+                state: .requested
             )
             // store here
         }
@@ -102,7 +103,13 @@ extension HomeViewModel {
 // MARK: - Driver API
 
 extension HomeViewModel {
-    func fetchTrips() async {
+
+    func addTripObserverForPassenger() {
+        guard let currentUser, currentUser.accountType == .passenger else { return }
+        
+    }
+
+    private func fetchTrips() async {
         do {
             let trips = try await tripService.fetchTrips()
             await MainActor.run {
@@ -116,7 +123,16 @@ extension HomeViewModel {
         } catch {
             print("Error while fetching trips \(error.localizedDescription)")
         }
+    }
 
+    func rejectTrip() {
+        guard var trip else { return }
+        trip.state = .rejected
+    }
+
+    func acceptTrip() {
+        guard var trip else { return }
+        trip.state = .accepted
     }
 }
 

@@ -7,6 +7,10 @@
 
 import SwiftUI
 
+enum TripState: Int, Codable {
+    case requested, rejected, accepted
+}
+
 struct Trip: Identifiable, Codable {
     let id: String
     let passengerUid: String
@@ -23,6 +27,7 @@ struct Trip: Identifiable, Codable {
     let tripCost: Double
     var distanceToPassenger: Double
     var travelTimeToPassenger: Int
+    var state: TripState
 }
 
 extension Trip {
@@ -42,7 +47,8 @@ extension Trip {
             dropoffLocation: GeoPoint(latitude: 37.32, longitude: -122.03),
             tripCost: 50.0,
             distanceToPassenger: 1000,
-            travelTimeToPassenger: 24
+            travelTimeToPassenger: 24,
+            state: .requested
         )
     ]
 }

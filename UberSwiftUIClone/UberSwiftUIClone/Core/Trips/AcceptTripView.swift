@@ -12,10 +12,13 @@ struct AcceptTripView: View {
 
     private let annotation: UberLocation
     private let trip: Trip
+    private let viewModel: HomeViewModel
+
     @State private var cameraPosition: MapCameraPosition
     
-    init(trip: Trip) {
+    init(trip: Trip, with viewModel: HomeViewModel) {
         self.trip = trip
+        self.viewModel = viewModel
         let center = CLLocationCoordinate2D(
             latitude: trip.pickupLocation.latitude,
             longitude: trip.pickupLocation.longitude
@@ -150,7 +153,7 @@ struct AcceptTripView: View {
 
             HStack(spacing: 32) {
                 Button {
-
+                    viewModel.rejectTrip()
                 } label: {
                     Text("Reject")
                         .font(.headline)
@@ -163,7 +166,7 @@ struct AcceptTripView: View {
                 }
 
                 Button {
-
+                    viewModel.acceptTrip()
                 } label: {
                     Text("Accept")
                         .font(.headline)
@@ -185,5 +188,5 @@ struct AcceptTripView: View {
 }
 
 #Preview {
-    AcceptTripView(trip: Trip.mockTrips[0])
+    AcceptTripView(trip: Trip.mockTrips[0], with: HomeViewModel())
 }
