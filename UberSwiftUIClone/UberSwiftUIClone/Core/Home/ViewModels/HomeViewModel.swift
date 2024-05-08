@@ -13,6 +13,7 @@ final class HomeViewModel: NSObject, ObservableObject {
     @Published var drivers = [User]()
     @EnvironmentObject var authManager: AuthManager
     var currentUser: User?
+    @Published var trip: Trip?
 
     // location search properties
     @Published var results = [MKLocalSearchCompletion]()
@@ -22,6 +23,7 @@ final class HomeViewModel: NSObject, ObservableObject {
     @Published var dropOffTime: String?
     var userLocation: CLLocationCoordinate2D?
     private let service = AuthService.shared
+    private let tripService = TripService.shared
     private let searchCompleter = MKLocalSearchCompleter()
     var queryFragment: String = "" {
         didSet {
@@ -39,9 +41,18 @@ final class HomeViewModel: NSObject, ObservableObject {
     func fetchUser() async {
         let user = await service.fetchCurrentUser()
         currentUser = user
-        guard user.accountType == .passenger else { return }
-        await fetchDrivers()
+
+        if user.accountType == .passenger {
+            await fetchDrivers()
+        } else {
+            await fetchTrips()
+        }
     }
+}
+
+// MARK: - Passenger API
+
+extension HomeViewModel {
 
     func fetchDrivers() async {
         let drivers = await service.fetchDrivers()
@@ -50,11 +61,6 @@ final class HomeViewModel: NSObject, ObservableObject {
             self.drivers = drivers
         }
     }
-}
-
-// MARK: - Passenger API
-
-extension HomeViewModel {
 
     func requestTrip() {
         print("Drivers \(drivers)")
@@ -91,7 +97,17 @@ extension HomeViewModel {
 // MARK: - Driver API
 
 extension HomeViewModel {
+    func fetchTrips() async {
+        do {
+            let trips = try await tripService.fetchTrips()
+            await MainActor.run {
+                trip = trips.first
+            }
+        } catch {
+            print("Error while fetching trips \(error.localizedDescription)")
+        }
 
+    }
 }
 
 // MARK: - Location search helpers

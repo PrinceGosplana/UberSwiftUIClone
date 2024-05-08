@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8A39D75B2BEB62C900102713 /* TripServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A39D75A2BEB62C900102713 /* TripServiceProtocol.swift */; };
+		8A39D75D2BEB634A00102713 /* TripService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A39D75C2BEB634A00102713 /* TripService.swift */; };
+		8A39D75F2BEB639800102713 /* MockTripService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A39D75E2BEB639800102713 /* MockTripService.swift */; };
+		8A39D7612BEB72D900102713 /* GeoPoint+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A39D7602BEB72D900102713 /* GeoPoint+Ext.swift */; };
 		8AD9D32C2BE6252300D0CEE6 /* CustomInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD9D32B2BE6252300D0CEE6 /* CustomInputField.swift */; };
 		8AD9D32E2BE638FA00D0CEE6 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD9D32D2BE638F900D0CEE6 /* AuthManager.swift */; };
 		8AD9D3312BE642B600D0CEE6 /* AuthServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD9D3302BE642B600D0CEE6 /* AuthServiceProtocol.swift */; };
@@ -52,6 +56,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8A39D75A2BEB62C900102713 /* TripServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripServiceProtocol.swift; sourceTree = "<group>"; };
+		8A39D75C2BEB634A00102713 /* TripService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripService.swift; sourceTree = "<group>"; };
+		8A39D75E2BEB639800102713 /* MockTripService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTripService.swift; sourceTree = "<group>"; };
+		8A39D7602BEB72D900102713 /* GeoPoint+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GeoPoint+Ext.swift"; sourceTree = "<group>"; };
 		8AD9D32B2BE6252300D0CEE6 /* CustomInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputField.swift; sourceTree = "<group>"; };
 		8AD9D32D2BE638F900D0CEE6 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		8AD9D3302BE642B600D0CEE6 /* AuthServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServiceProtocol.swift; sourceTree = "<group>"; };
@@ -125,6 +133,9 @@
 				8AD9D3302BE642B600D0CEE6 /* AuthServiceProtocol.swift */,
 				8AD9D3322BE6439600D0CEE6 /* AuthService.swift */,
 				8AD9D3342BE643A000D0CEE6 /* MockAuthService.swift */,
+				8A39D75A2BEB62C900102713 /* TripServiceProtocol.swift */,
+				8A39D75C2BEB634A00102713 /* TripService.swift */,
+				8A39D75E2BEB639800102713 /* MockTripService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -216,6 +227,7 @@
 				8ADF1AD72BE52D4D00F0C67F /* Color.swift */,
 				8ADF1AD32BE5143400F0C67F /* Double.swift */,
 				8AD9D3542BE8F31900D0CEE6 /* DeveloperPreview.swift */,
+				8A39D7602BEB72D900102713 /* GeoPoint+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -460,6 +472,8 @@
 				8AD9D35D2BE9D74500D0CEE6 /* AcceptTripView.swift in Sources */,
 				8ADF1AC22BE2704700F0C67F /* LocationSearchActivationView.swift in Sources */,
 				8AD9D3312BE642B600D0CEE6 /* AuthServiceProtocol.swift in Sources */,
+				8A39D75B2BEB62C900102713 /* TripServiceProtocol.swift in Sources */,
+				8A39D7612BEB72D900102713 /* GeoPoint+Ext.swift in Sources */,
 				8AD9D33E2BE6ADCA00D0CEE6 /* SideMenuOptionViewModel.swift in Sources */,
 				8AD9D3352BE643A000D0CEE6 /* MockAuthService.swift in Sources */,
 				8ADF1AD62BE51C7400F0C67F /* UberLocation.swift in Sources */,
@@ -468,8 +482,10 @@
 				8AD9D3552BE8F31900D0CEE6 /* DeveloperPreview.swift in Sources */,
 				8ADF1AB62BE2652500F0C67F /* HomeView.swift in Sources */,
 				8AD9D3512BE7E69B00D0CEE6 /* LocationSearchResults.swift in Sources */,
+				8A39D75D2BEB634A00102713 /* TripService.swift in Sources */,
 				8AD9D3612BEA0A4500D0CEE6 /* GeoPoint.swift in Sources */,
 				8AD9D33C2BE69ED600D0CEE6 /* SideMenuView.swift in Sources */,
+				8A39D75F2BEB639800102713 /* MockTripService.swift in Sources */,
 				8AD9D3452BE7B07600D0CEE6 /* SettingsView.swift in Sources */,
 				8ADF1AC82BE28B3300F0C67F /* LocationSearchResultCell.swift in Sources */,
 				8ADF1ADD2BE539B600F0C67F /* LoginView.swift in Sources */,

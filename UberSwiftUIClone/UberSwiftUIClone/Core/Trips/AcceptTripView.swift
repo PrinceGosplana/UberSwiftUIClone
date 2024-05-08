@@ -10,11 +10,29 @@ import MapKit
 
 struct AcceptTripView: View {
 
-    @State private var cameraPosition = MapCameraPosition.region(MKCoordinateRegion(
-            center: CLLocationCoordinate2D(latitude: 37.3346, longitude: -122.0090),
-            span: MKCoordinateSpan(latitudeDelta: 0.025, longitudeDelta: 0.0245)
-        ))
-
+    private let annotation: UberLocation
+    private let trip: Trip
+    @State private var cameraPosition: MapCameraPosition
+    
+    init(trip: Trip) {
+        self.trip = trip
+        let center = CLLocationCoordinate2D(
+            latitude: trip.pickupLocation.latitude,
+            longitude: trip.pickupLocation.longitude
+        )
+        let span = MKCoordinateSpan(latitudeDelta: 0.025, longitudeDelta: 0.0245)
+        _cameraPosition = State(initialValue: MapCameraPosition.region(
+            MKCoordinateRegion(
+                center: center,
+                span: span
+            )
+        )
+        )
+        self.annotation = UberLocation(
+            title: trip.pickupLocationName,
+            coordinate: trip.pickupLocation.toCoordinate()
+        )
+    }
 
     var body: some View {
         VStack {
@@ -63,7 +81,7 @@ struct AcceptTripView: View {
                         .clipShape(Circle())
 
                     VStack(alignment: .leading, spacing: 2) {
-                        Text("STEPHAN")
+                        Text(trip.passengerName)
                             .fontWeight(.bold)
 
                         HStack {
@@ -82,7 +100,7 @@ struct AcceptTripView: View {
                     VStack(spacing: 6) {
                         Text("Earnings")
 
-                        Text("$22.04")
+                        Text(trip.tripCost.toCurrency())
                             .font(.system(size: 24, weight: .semibold))
                     }
                 }
@@ -96,10 +114,10 @@ struct AcceptTripView: View {
             VStack {
                 HStack {
                     VStack(alignment: .leading, spacing: 6) {
-                        Text("Apple Campus")
+                        Text(trip.pickupLocationName)
                             .font(.headline)
 
-                        Text("Infinite Loop 1, Santa Clara Country")
+                        Text(trip.pickupLocationAddress)
                             .font(.subheadline)
                             .foregroundStyle(.gray)
                     }
@@ -118,7 +136,9 @@ struct AcceptTripView: View {
                 }
                 .padding(.horizontal)
                 
-                Map(position: $cameraPosition)
+                Map(position: $cameraPosition) {
+                    Marker(trip.pickupLocationName, coordinate: trip.passengerLocation.toCoordinate())
+                }
                     .frame(height: 220)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                     .shadow(color: .black.opacity(0.6), radius: 10)
@@ -157,9 +177,12 @@ struct AcceptTripView: View {
             }
             .padding([.top, .horizontal])
         }
+        .padding(.bottom, 32)
+        .background(Color.theme.backgroundColor)
+        .clipShape(RoundedRectangle(cornerRadius: 16))
     }
 }
 
 #Preview {
-    AcceptTripView()
+    AcceptTripView(trip: Trip.mockTrips[0])
 }
