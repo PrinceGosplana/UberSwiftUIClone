@@ -180,10 +180,7 @@ struct AcceptTripView: View {
             }
             .padding([.top, .horizontal])
         }
-        .padding(.bottom, 32)
-        .background(Color.theme.backgroundColor)
-        .clipShape(RoundedRectangle(cornerRadius: 16))
-        .shadow(color: Color.theme.secondaryBackgroundColor, radius: 20)
+        .modifier(InfoViewModifiers())
     }
 }
 

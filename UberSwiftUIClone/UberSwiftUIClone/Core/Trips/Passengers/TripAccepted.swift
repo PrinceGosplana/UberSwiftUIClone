@@ -13,10 +13,7 @@ struct TripAccepted: View {
 
     var body: some View {
         VStack {
-            Capsule()
-                .foregroundStyle(Color(.systemGray5))
-                .frame(width: 48, height: 6)
-                .padding(.top, 8)
+            CapsuleView()
 
             if let trip = viewModel.trip {
 
@@ -110,10 +107,7 @@ struct TripAccepted: View {
                     .padding([.leading, .trailing], 16)
             }
         }
-        .padding(.bottom, 32)
-        .background(Color.theme.backgroundColor)
-        .clipShape(RoundedRectangle(cornerRadius: 16))
-        .shadow(color: Color.theme.secondaryBackgroundColor, radius: 20)
+        .modifier(InfoViewModifiers())
     }
 }
 

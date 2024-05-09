@@ -88,8 +88,11 @@ extension HomeView {
 
                 } else {
                     if let trip = homeViewModel.trip {
-                        withAnimation {
+                        if mapState == .tripRequested {
                             AcceptTripView(trip: trip, with: homeViewModel)
+                                .transition(.move(edge: .bottom))
+                        } else if mapState == .tripAccepted {
+                            PickupPassenger(trip: trip)
                                 .transition(.move(edge: .bottom))
                         }
                     }

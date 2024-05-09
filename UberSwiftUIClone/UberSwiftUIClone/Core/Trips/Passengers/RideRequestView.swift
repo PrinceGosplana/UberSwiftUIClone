@@ -14,10 +14,7 @@ struct RideRequestView: View {
 
     var body: some View {
         VStack {
-            Capsule()
-                .foregroundStyle(Color(.systemGray5))
-                .frame(width: 48, height: 6)
-                .padding(.top, 8)
+            CapsuleView()
             // trip info view
 
             HStack {

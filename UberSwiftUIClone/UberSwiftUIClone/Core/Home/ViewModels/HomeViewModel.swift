@@ -14,6 +14,7 @@ final class HomeViewModel: NSObject, ObservableObject {
     @EnvironmentObject var authManager: AuthManager
     var currentUser: User?
     @Published var trip: Trip?
+    var routeToPickupLocation: MKRoute?
 
     // location search properties
     @Published var results = [MKLocalSearchCompletion]()
@@ -142,6 +143,17 @@ extension HomeViewModel {
 // MARK: - Location search helpers
 
 extension HomeViewModel {
+
+    func addTripObserverForDriver() {
+        guard let currentUser, currentUser.accountType == .driver else { return }
+
+        guard let trip else { return }
+        getDestinationRoute(from: trip.driverLocation.toCoordinate(), to: trip.pickupLocation.toCoordinate()) { route in
+            self.routeToPickupLocation = route
+            self.trip?.travelTimeToPassenger = Int(route.expectedTravelTime / 60)
+            self.trip?.distanceToPassenger = route.distance
+        }
+    }
 
     private func addressFromPlacemark(_ placemark: CLPlacemark) -> String {
         var result = ""
