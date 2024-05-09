@@ -12,13 +12,11 @@ struct AcceptTripView: View {
 
     private let annotation: UberLocation
     private let trip: Trip
-    private let viewModel: HomeViewModel
-
+    @EnvironmentObject var viewModel: HomeViewModel
     @State private var cameraPosition: MapCameraPosition
     
-    init(trip: Trip, with viewModel: HomeViewModel) {
+    init(trip: Trip) {
         self.trip = trip
-        self.viewModel = viewModel
         let center = CLLocationCoordinate2D(
             latitude: trip.pickupLocation.latitude,
             longitude: trip.pickupLocation.longitude
@@ -185,5 +183,6 @@ struct AcceptTripView: View {
 }
 
 #Preview {
-    AcceptTripView(trip: Trip.mockTrips[0], with: HomeViewModel())
+    AcceptTripView(trip: Trip.mockTrips[0])
+        .environmentObject(HomeViewModel())
 }

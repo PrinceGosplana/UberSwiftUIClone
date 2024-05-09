@@ -25,8 +25,6 @@ struct UberMapViewRepresentable: UIViewRepresentable {
 
     func updateUIView(_ uiView: UIViewType, context: Context) {
         switch mapState {
-        case .noInput:
-            break
         case .showSideMenu:
             context.coordinator.clearMapViewAndRecenterOnUserLocation()
         case .searchingForLocation:
@@ -36,11 +34,7 @@ struct UberMapViewRepresentable: UIViewRepresentable {
                 context.coordinator.addAndSelectAnnotation(withCoordinate: coordinate)
                 context.coordinator.configurePolyline(withDestinationCoordinate: coordinate)
             }
-        case .polylineAdded: break
-        case .tripRequested:
-            break
-        case .tripRejected:
-            break
+        case .noInput, .polylineAdded, .tripRequested, .tripRejected, .tripCancelledByPassenger, .tripCancelledByDriver: break
         case .tripAccepted:
             guard let trip = homeViewModel.trip else { return }
             guard let driver = homeViewModel.currentUser, driver.accountType == .driver else { return }

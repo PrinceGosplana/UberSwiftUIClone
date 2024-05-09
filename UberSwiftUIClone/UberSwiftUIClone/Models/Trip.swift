@@ -8,7 +8,7 @@
 import SwiftUI
 
 enum TripState: Int, Codable {
-    case requested, rejected, accepted
+    case requested, rejected, accepted, passengerCancelled, driverCancelled
 }
 
 struct Trip: Identifiable, Codable {

@@ -32,11 +32,61 @@ final class HomeViewModel: NSObject, ObservableObject {
         }
     }
 
+    var tripCancelledMessage: String {
+        guard let currentUser, let trip else { return "" }
+
+        if currentUser.accountType == .passenger {
+            if trip.state == .driverCancelled {
+                return "Your driver cancelled this trip"
+            } else if trip.state == .passengerCancelled {
+                return "Your trip has been cancelled"
+            }
+        } else {
+            if trip.state == .driverCancelled {
+                return "Your trip has been cancelled"
+            } else if trip.state == .passengerCancelled {
+                return "The trip has been cancelled by the passenger"
+            }
+        }
+        return ""
+    }
+
     override init() {
         super.init()
         Task { await fetchUser() }
         searchCompleter.delegate = self
         searchCompleter.queryFragment = queryFragment
+    }
+
+    // MARK: - Helpers
+
+    func viewForState(_ state: MapViewState, user: User) -> some View {
+        switch state {
+        case .noInput, .searchingForLocation, .tripRequested, .showSideMenu:
+            return AnyView(Text(""))
+        case .polylineAdded, .locationSelected:
+            return AnyView(RideRequestView())
+        case .tripRejected:
+            if user.accountType == .passenger {
+                return AnyView(TripLoading())
+            } else {
+                if let trip {
+                    return AnyView(AcceptTripView(trip: trip))
+                }
+            }
+            return AnyView(Text(""))
+        case .tripAccepted:
+            if user.accountType == .passenger {
+                return AnyView(TripAccepted())
+            } else {
+                if let trip {
+                    return AnyView(PickupPassenger(trip: trip))
+                }
+            }
+            return AnyView(Text(""))
+        case .tripCancelledByPassenger, .tripCancelledByDriver:
+            return AnyView(TripCancelled())
+        }
     }
 
     func fetchUser() async {
@@ -49,6 +99,15 @@ final class HomeViewModel: NSObject, ObservableObject {
             await fetchTrips()
         }
     }
+
+    private func updateTripState(with state: TripState) {
+        guard var trip else { return }
+        trip.state = state
+    }
+
+    func deleteTrip() {
+        trip = nil
+    }
 }
 
 // MARK: - Passenger API
@@ -57,14 +116,13 @@ extension HomeViewModel {
 
     func fetchDrivers() async {
         let drivers = await service.fetchDrivers()
-        print("Drivers \(drivers)")
+
         await MainActor.run {
             self.drivers = drivers
         }
     }
 
     func requestTrip() {
-        print("Drivers \(drivers)")
         guard let driver = drivers.first else { return }
         guard let currentUser else { return }
         guard let dropoffLocation = selectedUberLocation else { return }
@@ -78,7 +136,7 @@ extension HomeViewModel {
             error in
             guard let placemark else { return }
             
-            let trip = Trip(
+            trip = Trip(
                 id: UUID().uuidString,
                 passengerUid: currentUser.uid,
                 driverUid: driver.uid,
@@ -96,8 +154,11 @@ extension HomeViewModel {
                 travelTimeToPassenger: 0,
                 state: .requested
             )
-            // store here
         }
+    }
+
+    func cancelTripAsPassenger() {
+        updateTripState(with: .passengerCancelled)
     }
 }
 
@@ -134,9 +195,8 @@ extension HomeViewModel {
         updateTripState(with: .accepted)
     }
 
-    private func updateTripState(with state: TripState) {
-        guard var trip else { return }
-        trip.state = state
+    func cancelTripAsDriver() {
+        updateTripState(with: .driverCancelled)
     }
 }
 
