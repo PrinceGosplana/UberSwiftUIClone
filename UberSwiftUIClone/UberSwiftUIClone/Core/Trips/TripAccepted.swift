@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct TripAccepted: View {
+
+    @EnvironmentObject var viewModel: HomeViewModel
+
     var body: some View {
         VStack {
             Capsule()
@@ -15,82 +18,85 @@ struct TripAccepted: View {
                 .frame(width: 48, height: 6)
                 .padding(.top, 8)
 
-            // pickup info view
-            VStack {
-                HStack {
-                    Text("Meet your driver at Apple Campus")
-                        .font(.body)
-                        .frame(height: 44)
-                        .lineLimit(2)
-                        .padding(.trailing)
+            if let trip = viewModel.trip {
 
-                    Spacer()
+                // pickup info view
+                VStack {
+                    HStack {
+                        Text("Meet your driver at \(trip.pickupLocationName) for your trip to \(trip.dropoffLocationName)")
+                            .font(.body)
+                            .frame(height: 44)
+                            .lineLimit(2)
+                            .padding(.trailing)
 
-                    VStack {
-                        Text("10")
+                        Spacer()
 
-                        Text("min")
-                    }
-                    .bold()
-                    .foregroundStyle(.white)
-                    .frame(width: 56, height: 56)
-                    .background(Color(.systemBlue))
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                }
-                .padding()
+                        VStack {
+                            Text("\(trip.travelTimeToPassenger)")
 
-                Divider()
-            }
-
-            // driver info view
-            VStack {
-                HStack {
-                    Image(.maleProfilePhoto)
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 80, height: 80)
-                        .clipShape(Circle())
-
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text("Kevin")
-                            .fontWeight(.bold)
-
-                        HStack {
-                            Image(systemName: "star.fill")
-                                .foregroundStyle(Color(.systemYellow))
-                                .imageScale(.small)
-
-                            Text("4.8")
-                                .font(.footnote)
-                                .foregroundStyle(.gray)
+                            Text("min")
                         }
+                        .bold()
+                        .foregroundStyle(.white)
+                        .frame(width: 56, height: 56)
+                        .background(Color(.systemBlue))
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
                     }
+                    .padding()
 
-                    Spacer()
+                    Divider()
+                }
 
-                    // driver vehicle info
-                    VStack(alignment: .center) {
-                        Image(.uberX)
+                // driver info view
+                VStack {
+                    HStack {
+                        Image(.maleProfilePhoto)
                             .resizable()
                             .scaledToFill()
-                            .frame(width: 120, height: 64)
+                            .frame(width: 80, height: 80)
+                            .clipShape(Circle())
 
-                        HStack {
-                            Text("Mersedes S -")
-                                .font(.system(size: 14, weight: .semibold))
-                                .foregroundStyle(.gray)
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(trip.driverName)
+                                .fontWeight(.bold)
 
-                            Text("5o43958")
-                                .font(.system(size: 14, weight: .semibold))
+                            HStack {
+                                Image(systemName: "star.fill")
+                                    .foregroundStyle(Color(.systemYellow))
+                                    .imageScale(.small)
+
+                                Text("4.8")
+                                    .font(.footnote)
+                                    .foregroundStyle(.gray)
+                            }
                         }
-                        .frame(width: 160)
-                        .padding(.bottom)
-                    }
-                }
 
-                Divider()
+                        Spacer()
+
+                        // driver vehicle info
+                        VStack(alignment: .center) {
+                            Image(.uberX)
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 120, height: 64)
+
+                            HStack {
+                                Text("Mersedes S -")
+                                    .font(.system(size: 14, weight: .semibold))
+                                    .foregroundStyle(.gray)
+
+                                Text("5o43958")
+                                    .font(.system(size: 14, weight: .semibold))
+                            }
+                            .frame(width: 160)
+                            .padding(.bottom)
+                        }
+                    }
+
+                    Divider()
+                }
+                .padding()
             }
-            .padding()
 
             Button {
 
@@ -113,4 +119,5 @@ struct TripAccepted: View {
 
 #Preview {
     TripAccepted()
+        .environmentObject(HomeViewModel())
 }

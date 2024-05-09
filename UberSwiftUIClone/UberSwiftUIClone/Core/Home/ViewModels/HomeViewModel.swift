@@ -126,13 +126,16 @@ extension HomeViewModel {
     }
 
     func rejectTrip() {
-        guard var trip else { return }
-        trip.state = .rejected
+        updateTripState(with: .rejected)
     }
 
     func acceptTrip() {
+        updateTripState(with: .accepted)
+    }
+
+    private func updateTripState(with state: TripState) {
         guard var trip else { return }
-        trip.state = .accepted
+        trip.state = state
     }
 }
 
